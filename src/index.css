@@ -56,8 +56,15 @@
 }
 
 /* Custom CSS Keyframes for Interactive Doodles */
-@keyframes blinkText { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
-.animate-blink { animation: blinkText 1.5s steps(2) infinite; }
+
+/* --- UPDATED: Hardware LCD Asymmetric Blink --- */
+@keyframes hardwareBlink {
+  0%, 85% { opacity: 1; }   /* Stays visible for 85% of the time */
+  86%, 95% { opacity: 0; }  /* Quick flicker off for 10% of the time */
+  100% { opacity: 1; }      /* Snaps back on */
+}
+.animate-blink { animation: hardwareBlink 2s infinite; }
+
 
 @keyframes scrollMarquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 .animate-marquee { display: flex; width: 200%; height: 100%; animation: scrollMarquee 7s linear infinite; }
@@ -74,6 +81,7 @@
 
 @keyframes spinHardware { 100% { transform: rotate(360deg); } }
 .animate-spin-steps { animation: spinHardware 6s steps(16) infinite; }
+
 /* --- Back to Top Launch Animations --- */
 @keyframes rocketUp {
   0% { transform: translateY(0); }
