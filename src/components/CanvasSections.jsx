@@ -1,5 +1,57 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import NokiaSidebar from './NokiaSidebar';
+import clickSound from '../assets/click.wav';
+
+// HARDWARE PRELOAD FOR TYPING SOUNDS
+const preloadedType = new Audio(clickSound);
+preloadedType.preload = 'auto';
+
+const TypewriterIntro = () => {
+  const [text, setText] = useState('');
+  const fullText = "HEMANT YADAV";
+  const [showDot, setShowDot] = useState(false);
+  const [isTyping, setIsTyping] = useState(true);
+
+  useEffect(() => {
+    let i = 0;
+    const typingInterval = setInterval(() => {
+      if (i < fullText.length) {
+        setText(fullText.slice(0, i + 1));
+        
+        // Play mechanical click for every letter (skip spaces)
+        if (fullText[i] !== ' ') {
+          const typeClone = preloadedType.cloneNode();
+          typeClone.volume = 0.2; // Keep it quiet and tactile
+          typeClone.play().catch(() => {});
+        }
+        i++;
+      } else {
+        clearInterval(typingInterval);
+        setIsTyping(false);
+        
+        // Dramatic pause before the final red dot
+        setTimeout(() => {
+          setShowDot(true);
+          const dotClone = preloadedType.cloneNode();
+          dotClone.volume = 0.6; // Louder final "clack"
+          dotClone.play().catch(() => {});
+        }, 500);
+      }
+    }, 150); // 150ms delay gives it that deliberate, heavy retro speed
+
+    return () => clearInterval(typingInterval);
+  }, []);
+
+  return (
+    <div className="flex items-end min-h-[60px] mb-2">
+      <h1 className="font-mono text-5xl font-bold uppercase leading-tight">
+        {text}{showDot && <span className="text-red-600">.</span>}
+      </h1>
+      {/* Retro Terminal Block Cursor */}
+      <div className={`w-5 h-10 bg-eink-ink ml-2 mb-1 ${!isTyping ? 'animate-blink' : ''}`}></div>
+    </div>
+  );
+};
 
 const projectsData = [
   {
@@ -27,10 +79,13 @@ const CanvasSections = ({ activeSection }) => {
     <main className="flex flex-col gap-32 pt-4 pb-32 w-full max-w-[850px]">
       
       <section id="about-sys" className="scroll-section relative" data-screen="SYS_INFO">
-        <h1 className="font-mono text-5xl font-bold uppercase leading-tight">Hemant Yadav</h1>
+        
+        {/* === NEW TYPING INTRO REPLACES STATIC H1 === */}
+        <TypewriterIntro />
+        
         <p className="font-mono font-semibold opacity-85 text-base mt-3">ID // 2K24CSUN01285 | CSE.AI_YEAR_2</p>
         
-        {/* MOBILE CONTROLLER (Hidden on Laptops) */}
+        {/* MOBILE CONTROLLER */}
         <NokiaSidebar activeSection={activeSection} isDesktop={false} />
 
         <h2 className="border-b-4 border-eink-ink inline-block mb-8 font-mono text-3xl uppercase">System Overview</h2>
