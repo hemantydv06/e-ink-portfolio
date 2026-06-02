@@ -10,6 +10,12 @@ const NokiaSidebar = ({ activeSection, isDesktop }) => {
 
   const handleNavClick = (e, targetId) => {
     e.preventDefault();
+    
+    // --- PLAY CLICK SOUND ---
+    // Creates a new audio instance so rapid clicks can overlap naturally
+    const clickAudio = new Audio('/click.wav');
+    clickAudio.play().catch(err => console.log("Audio block by browser:", err));
+
     const targetElement = document.querySelector(targetId);
     if (targetElement) {
       const yOffset = targetElement.getBoundingClientRect().top + window.scrollY - 40;
@@ -17,7 +23,6 @@ const NokiaSidebar = ({ activeSection, isDesktop }) => {
     }
   };
 
-  // Switch between Desktop (fixed left) and Mobile (inline) wrappers
   const wrapperClass = isDesktop 
     ? "hidden md:block relative w-[280px]" 
     : "block md:hidden relative w-full max-w-[450px] my-10";

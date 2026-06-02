@@ -1,100 +1,96 @@
 import React from 'react';
-import NokiaSidebar from './NokiaSidebar';
 
-const projectsData = [
-  {
-    title: "LedgerLease",
-    badge: "SaaS Platform",
-    desc: "End-to-end rental property management optimizer platform featuring automated billing and multi-tenant tracking.",
-    tags: ["#React", "#SQL"]
-  },
-  {
-    title: "Autonomous Indoor Farming",
-    badge: "Hardware / AI",
-    desc: "Closed-loop automation platform for indoor plantation care utilizing edge diagnostics and macro-nutrient control loops.",
-    tags: ["#ESP32-S3", "#NeuralNetworks"]
-  }
-];
+const NokiaSidebar = ({ activeSection, isDesktop }) => {
+  const navItems = [
+    { id: '#about-sys', screen: 'SYS_INFO', num: '1', desc: 'OVERVIEW' },
+    { id: '#projects-sys', screen: 'DEPLOYMENTS', num: '2', desc: 'WORK' },
+    { id: '#skills-sys', screen: 'TECH_STACK', num: '3', desc: 'SKILLS' },
+    { id: '#edu-sys', screen: 'ACADEMICS', num: '4', desc: 'LOGS' },
+  ];
 
-const skillsData = [
-  { label: "Languages", value: "Java, Python, C++, SQL" },
-  { label: "Frameworks", value: "React, Flutter, Scikit-learn" },
-  { label: "Hardware", value: "ESP32-S3 Microcontrollers, IoT Sensors" }
-];
+  const handleNavClick = (e, targetId) => {
+    e.preventDefault();
+    
+    // --- PLAY CLICK SOUND ---
+    // Creates a new audio instance so rapid clicks can overlap naturally
+    const clickAudio = new Audio('/click.wav');
+    clickAudio.play().catch(err => console.log("Audio block by browser:", err));
 
-const CanvasSections = ({ activeSection }) => {
+    const targetElement = document.querySelector(targetId);
+    if (targetElement) {
+      const yOffset = targetElement.getBoundingClientRect().top + window.scrollY - 40;
+      window.scrollTo({ top: yOffset, behavior: 'smooth' });
+    }
+  };
+
+  const wrapperClass = isDesktop 
+    ? "hidden md:block relative w-[280px]" 
+    : "block md:hidden relative w-full max-w-[450px] my-10";
+
+  const asideClass = isDesktop
+    ? "fixed top-24 -ml-6 w-[280px]"
+    : "w-full";
+
   return (
-    <main className="flex flex-col gap-32 pt-4 pb-32 w-full max-w-[850px]">
-      
-      <section id="about-sys" className="scroll-section relative" data-screen="SYS_INFO">
-        <h1 className="font-mono text-5xl font-bold uppercase leading-tight">Hemant Yadav</h1>
-        <p className="font-mono font-semibold opacity-85 text-base mt-3">ID // 2K24CSUN01285 | CSE.AI_YEAR_2</p>
+    <div className={wrapperClass}> 
+      <aside className={`${asideClass} bg-eink-bg border-4 border-eink-ink rounded-sm p-6 shadow-hardware flex flex-col gap-6 relative overflow-hidden`}>
         
-        {/* === MOBILE CONTROLLER (Visible only on phones, hidden on laptops) === */}
-        <NokiaSidebar activeSection={activeSection} isDesktop={false} />
+        {/* Industrial Screws / Fasteners */}
+        <div className="absolute top-2 left-2 w-2 h-2 rounded-full border-2 border-eink-ink"></div>
+        <div className="absolute top-2 right-2 w-2 h-2 rounded-full border-2 border-eink-ink"></div>
+        <div className="absolute bottom-2 left-2 w-2 h-2 rounded-full border-2 border-eink-ink"></div>
+        <div className="absolute bottom-2 right-2 w-2 h-2 rounded-full border-2 border-eink-ink"></div>
 
-        <h2 className="border-b-4 border-eink-ink inline-block mb-8 font-mono text-3xl uppercase">System Overview</h2>
-        
-        <div className="sketch-frame text-xl leading-relaxed">
-          <p>Computer Science Engineering student specializing in <strong>Artificial Intelligence</strong>. Focused on bridging the interface between scalable cloud architecture and automated hardware nodes through clean code and precise physical design.</p>
+        {/* Header Branding */}
+        <div className="flex justify-between items-end border-b-2 border-eink-ink pb-2">
+          <div className="font-serif font-bold text-sm tracking-tighter uppercase">Teenage<br/>Engineering<br/>Vibe</div>
+          <div className="font-mono text-xs font-bold bg-eink-ink text-eink-bg px-1">MODEL: HY-2026</div>
         </div>
-        
-        <div className="mt-10 flex gap-6">
-          <a href="#" className="border-2 border-eink-ink px-6 py-3 rounded-full bg-white shadow-sketch hover:-translate-y-0.5 hover:shadow-sketch-hover transition-all font-mono font-bold text-base text-eink-ink">
-            <i className="fab fa-github mr-2"></i> _github
-          </a>
-          <a href="#" className="border-2 border-eink-ink px-6 py-3 rounded-full bg-white shadow-sketch hover:-translate-y-0.5 hover:shadow-sketch-hover transition-all font-mono font-bold text-base text-eink-ink">
-            <i className="fab fa-linkedin-in mr-2"></i> _linkedin
-          </a>
-        </div>
-      </section>
 
-      <section id="projects-sys" className="scroll-section relative" data-screen="DEPLOYMENTS">
-        <h2 className="border-b-4 border-eink-ink inline-block mb-10 font-mono text-3xl uppercase">Active Deployments</h2>
-        <div className="flex flex-col gap-12">
-          {projectsData.map((project, idx) => (
-            <div key={idx} className="sketch-frame">
-              <span className="bg-eink-ink text-eink-bg px-3 py-1.5 rounded text-sm font-mono font-bold inline-block mb-4">{project.badge}</span>
-              <h3 className="text-3xl font-mono font-bold mb-4">{project.title}</h3>
-              <p className="text-xl opacity-90">{project.desc}</p>
-              <div className="mt-6 flex gap-5 border-t-2 border-dashed border-eink-ink pt-5 font-mono text-base font-bold">
-                {project.tags.map(tag => <span key={tag}>{tag}</span>)}
+        {/* LCD Screen Element */}
+        <div className="w-full bg-eink-screen border-4 border-eink-ink p-4 flex flex-col justify-between h-32 relative">
+          <div className="flex justify-between items-center text-eink-ink text-xs font-mono font-bold">
+            <span>TX/RX</span>
+            <span className="flex gap-1">
+              <div className="w-1.5 h-3 bg-eink-ink"></div>
+              <div className="w-1.5 h-3 bg-eink-ink"></div>
+              <div className="w-1.5 h-3 bg-eink-ink"></div>
+              <div className="w-1.5 h-3 border border-eink-ink"></div>
+            </span>
+          </div>
+          <div className="font-mono font-bold text-2xl uppercase tracking-widest animate-blink">
+            {activeSection}
+          </div>
+        </div>
+
+        {/* Hardware Buttons Matrix */}
+        <nav className="grid grid-cols-2 gap-4 w-full">
+          {navItems.map((item) => (
+            <a 
+              key={item.num} 
+              href={item.id} 
+              onClick={(e) => handleNavClick(e, item.id)}
+              className={`hardware-btn ${activeSection === item.screen ? 'active-hardware-btn' : ''}`}
+            >
+              <div className="flex justify-between w-full font-mono font-bold text-xs mb-4">
+                <span>{item.num}</span>
+                <div className={`w-2 h-2 rounded-full ${activeSection === item.screen ? 'bg-te-orange' : 'border border-eink-ink'}`}></div>
               </div>
-            </div>
+              <span className="font-serif font-bold text-sm uppercase tracking-tighter text-left w-full">{item.desc}</span>
+            </a>
           ))}
-        </div>
-      </section>
+        </nav>
 
-      <section id="skills-sys" className="scroll-section relative" data-screen="TECH_STACK">
-        <h2 className="border-b-4 border-eink-ink inline-block mb-10 font-mono text-3xl uppercase">Technical Proficiencies</h2>
-        <div className="sketch-frame flex flex-col gap-8">
-          {skillsData.map((skill, idx) => (
-            <div key={idx} className={`${idx !== skillsData.length - 1 ? 'border-b-2 border-dashed border-eink-ink/30 pb-8' : ''}`}>
-              <div className="font-mono text-xl font-bold mb-2 uppercase">{skill.label}</div>
-              <div className="text-2xl font-semibold">{skill.value}</div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section id="edu-sys" className="scroll-section relative" data-screen="ACADEMICS">
-        <h2 className="border-b-4 border-eink-ink inline-block mb-10 font-mono text-3xl uppercase">Academic Timeline</h2>
-        <div className="border-l-4 border-dashed border-eink-ink pl-10 ml-5 flex flex-col gap-12 relative">
-          <div className="relative">
-            <div className="absolute -left-[54px] top-1.5 w-5 h-5 bg-eink-ink rounded-full border-4 border-eink-bg"></div>
-            <span className="font-mono text-base font-bold opacity-80">[ 2024 - PRESENT ]</span>
-            <h4 className="font-mono text-2xl font-bold mt-2">B.Tech — CSE (Artificial Intelligence)</h4>
-          </div>
-          <div className="relative">
-             <div className="absolute -left-[54px] top-1.5 w-5 h-5 bg-eink-ink rounded-full border-4 border-eink-bg"></div>
-            <span className="font-mono text-base font-bold opacity-80">[ CERTIFICATION ]</span>
-            <h4 className="font-mono text-2xl font-bold mt-2">Java Web Development Complete</h4>
+        {/* LED Status Bar */}
+        <div className="w-full h-8 border-2 border-eink-ink flex items-center justify-between px-2 bg-white">
+          <span className="font-mono text-[0.6rem] font-bold">SEQ_RUNNING</span>
+          <div className="flex gap-1">
+            <div className="w-2 h-2 bg-te-orange rounded-full animate-blink"></div>
           </div>
         </div>
-      </section>
-
-    </main>
+      </aside>
+    </div>
   );
 };
 
-export default CanvasSections;
+export default NokiaSidebar;

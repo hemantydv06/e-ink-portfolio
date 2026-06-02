@@ -39,6 +39,10 @@ const App = () => {
   }, []);
 
   const handleScrollToTop = () => {
+    // --- PLAY LAUNCH SOUND ---
+    const launchAudio = new Audio('/launch.wav');
+    launchAudio.play().catch(err => console.log("Audio block by browser:", err));
+
     setIsLaunching(true);
     window.scrollTo({ top: 0, behavior: 'smooth' });
     
@@ -79,7 +83,6 @@ const App = () => {
             className={`hardware-btn relative z-10 w-14 h-14 !p-0 flex flex-col items-center justify-center gap-1.5 ${isLaunching ? 'animate-rocket' : ''}`}
             title="Return to Top"
           >
-            {/* LED Indicator matched to TE-Orange */}
             <div className="w-1.5 h-1.5 bg-te-orange rounded-full animate-blink"></div>
             <i className="fa-solid fa-eject text-eink-ink"></i>
           </button>
