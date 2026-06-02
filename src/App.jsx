@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import NokiaSidebar from './components/NokiaSidebar';
 import CanvasSections from './components/CanvasSections';
 
 const App = () => {
-  const [activeSection, setActiveSection] = useState('_HOME');
+  const [activeSection, setActiveSection] = useState('SYS_INFO');
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -24,17 +23,17 @@ const App = () => {
   }, []);
 
   return (
-    // Added overflow-x-hidden here instead of the body tag
-    <div className="relative flex justify-center min-h-screen overflow-x-hidden">
+    <div className="relative flex justify-center min-h-screen">
       
       <div 
         className="fixed inset-0 w-full h-full bg-cover bg-center bg-no-repeat opacity-15 grayscale contrast-150 -z-10 pointer-events-none"
         style={{ backgroundImage: "url('/topo-bg.jpg')" }} 
       />
 
-      <div className="grid grid-cols-1 md:grid-cols-[280px_1fr] gap-16 max-w-[1150px] w-full px-8 py-14">
-        <NokiaSidebar activeSection={activeSection} />
-        <CanvasSections />
+      {/* Changed to a clean, single-column centered layout */}
+      <div className="flex flex-col w-full max-w-[850px] px-8 py-14">
+        {/* Pass the state directly into the canvas */}
+        <CanvasSections activeSection={activeSection} />
       </div>
 
     </div>

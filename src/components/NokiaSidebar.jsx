@@ -18,17 +18,11 @@ const NokiaSidebar = ({ activeSection }) => {
   };
 
   return (
-    /* MOBILE FIX: 
-      Removed 'hidden'. Added 'flex justify-center' for mobile centering. 
-      It now stacks at the top on phones, but stays 280px wide on desktop.
-    */
-    <div className="relative w-full md:w-[280px] flex justify-center md:justify-start mb-10 md:mb-0"> 
+    /* We made it slightly wider (450px) and gave it a top/bottom margin (my-12) to frame it nicely */
+    <div className="relative w-full max-w-[450px] my-12"> 
       
-      {/* MOBILE FIX: 
-        Added 'md:fixed', 'md:top-24', and 'md:-ml-6'. 
-        This means it is ONLY fixed to the left on computers. On phones, it scrolls naturally.
-      */}
-      <aside className="static md:fixed md:top-24 md:-ml-6 w-full max-w-[320px] md:w-[280px] bg-eink-bg border-4 border-eink-ink rounded-sm p-6 shadow-hardware flex flex-col gap-6 z-10 overflow-hidden">
+      {/* Removed all 'fixed' and 'sticky' constraints. It is now a static block element. */}
+      <aside className="w-full bg-eink-bg border-4 border-eink-ink rounded-sm p-6 shadow-hardware flex flex-col gap-6 relative overflow-hidden">
         
         {/* Industrial Screws / Fasteners */}
         <div className="absolute top-2 left-2 w-2 h-2 rounded-full border-2 border-eink-ink"></div>

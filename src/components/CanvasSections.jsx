@@ -1,4 +1,5 @@
 import React from 'react';
+import NokiaSidebar from './NokiaSidebar'; // Import the hardware controller
 
 const projectsData = [
   {
@@ -21,14 +22,18 @@ const skillsData = [
   { label: "Hardware", value: "ESP32-S3 Microcontrollers, IoT Sensors" }
 ];
 
-const CanvasSections = () => {
+const CanvasSections = ({ activeSection }) => {
   return (
     <main className="flex flex-col gap-32 pt-4 pb-32">
       
       <section id="about-sys" className="scroll-section relative" data-screen="SYS_INFO">
         <h1 className="font-mono text-5xl font-bold uppercase leading-tight">Hemant Yadav</h1>
         <p className="font-mono font-semibold opacity-85 text-base mt-3">ID // 2K24CSUN01285 | CSE.AI_YEAR_2</p>
-        <h2 className="border-b-4 border-eink-ink inline-block mb-8 mt-8 font-mono text-3xl uppercase">System Overview</h2>
+        
+        {/* === EMBEDDED CONTROLLER DASHBOARD === */}
+        <NokiaSidebar activeSection={activeSection} />
+
+        <h2 className="border-b-4 border-eink-ink inline-block mb-8 font-mono text-3xl uppercase">System Overview</h2>
         
         <div className="sketch-frame text-xl leading-relaxed">
           <p>Computer Science Engineering student specializing in <strong>Artificial Intelligence</strong>. Focused on bridging the interface between scalable cloud architecture and automated hardware nodes through clean code and precise physical design.</p>
@@ -45,7 +50,6 @@ const CanvasSections = () => {
       </section>
 
       <section id="projects-sys" className="scroll-section relative" data-screen="DEPLOYMENTS">
-        {/* The spinning sun/hardware SVG was removed from right here */}
         <h2 className="border-b-4 border-eink-ink inline-block mb-10 font-mono text-3xl uppercase">Active Deployments</h2>
         <div className="flex flex-col gap-12">
           {projectsData.map((project, idx) => (
