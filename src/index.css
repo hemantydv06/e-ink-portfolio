@@ -59,8 +59,8 @@
 
 /* --- UPDATED: Hardware LCD Asymmetric Blink --- */
 @keyframes hardwareBlink {
-  0%, 85% { opacity: 1; }   /* Stays visible for 85% of the time */
-  86%, 95% { opacity: 0; }  /* Quick flicker off for 10% of the time */
+  0%, 65% { opacity: 1; }   /* Stays visible for 85% of the time */
+  66%, 95% { opacity: 0; }  /* Quick flicker off for 10% of the time */
   100% { opacity: 1; }      /* Snaps back on */
 }
 .animate-blink { animation: hardwareBlink 2s infinite; }
