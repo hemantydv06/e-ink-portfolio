@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import CanvasSections from './components/CanvasSections';
 import NokiaSidebar from './components/NokiaSidebar';
+import launchSound from './assets/launch.wav';
 
 const App = () => {
   const [activeSection, setActiveSection] = useState('SYS_INFO');
@@ -41,8 +42,8 @@ const App = () => {
   const handleScrollToTop = () => {
     // --- PLAYS YOUR EXACT AUDIO FILE FOR BACK-TO-TOP LAUNCH ---
     // If you ever want a different sound here, just drop a new file in 'public' and change this name!
-    const launchAudio = new Audio('/launch.wav');
-    launchAudio.play().catch(err => console.log("Audio block by browser:", err));
+   const launchAudio = new Audio(launchSound);
+    launchAudio.play().catch(err => console.log("Audio blocked:", err));
 
     setIsLaunching(true);
     window.scrollTo({ top: 0, behavior: 'smooth' });

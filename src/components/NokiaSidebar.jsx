@@ -1,4 +1,5 @@
 import React from 'react';
+import clickSound from '../assets/click.wav';
 
 const NokiaSidebar = ({ activeSection, isDesktop }) => {
   const navItems = [
@@ -12,8 +13,8 @@ const NokiaSidebar = ({ activeSection, isDesktop }) => {
     e.preventDefault();
     
     // --- PLAYS YOUR EXACT AUDIO FILE FOR SIDEBAR CLICKS ---
-    const clickAudio = new Audio('/click.wav');
-    clickAudio.play().catch(err => console.log("Audio block by browser:", err));
+   const clickAudio = new Audio(clickSound);
+    clickAudio.play().catch(err => console.log("Audio blocked:", err));
 
     const targetElement = document.querySelector(targetId);
     if (targetElement) {
