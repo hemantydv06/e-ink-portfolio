@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+@theme {
+  /* --- COLORS --- */
+  --color-eink-bg: #EFEFEF;
+  --color-eink-ink: #222222;
+  --color-eink-screen: #A5B69C;
+  --color-te-orange: #FF5A00;
+
+  /* --- TYPOGRAPHY --- */
+  --font-mono: "Fira Code", monospace;
+  --font-serif: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+  /* --- SHADOWS (Sketch & Hardware) --- */
+  --shadow-sketch: 6px 6px 0px #222222;
+  --shadow-sketch-hover: 8px 8px 0px #222222;
+  --shadow-nokia: inset -6px -6px 0px rgba(0,0,0,0.06), inset 6px 6px 0px rgba(255,255,255,1), 10px 10px 0px #222222;
+  --shadow-hardware: 2px 2px 0px #222222;
+  --shadow-hardware-pressed: 0px 0px 0px #222222;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-eink-bg text-eink-ink font-serif;
+  }
+}
+
+@layer components {
+  /* Canvas Sketch Elements */
+  .sketch-frame {
+    @apply border-4 border-eink-ink bg-eink-bg p-8 shadow-sketch transition-all duration-200;
+    border-radius: 255px 15px 225px 25px/15px 225px 25px 255px;
+  }
+  
+  /* TE Hardware Sidebar Buttons */
+  .hardware-btn {
+    @apply bg-white border-2 border-eink-ink flex flex-col items-center justify-between p-3 text-eink-ink cursor-pointer transition-all duration-75 relative top-0 left-0;
+    box-shadow: var(--shadow-hardware);
+    border-radius: 4px;
+  }
+  
+  /* Mechanical 'snap' effect */
+  .hardware-btn:hover, .hardware-btn:active {
+    @apply top-[2px] left-[2px];
+    box-shadow: var(--shadow-hardware-pressed);
+  }
+  
+  /* Active state */
+  .active-hardware-btn {
+    @apply bg-eink-ink text-white top-[2px] left-[2px];
+    box-shadow: var(--shadow-hardware-pressed);
+  }
+}
+
+/* Custom CSS Keyframes for Interactive Doodles */
+@keyframes blinkText { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+.animate-blink { animation: blinkText 1.5s steps(2) infinite; }
+
+@keyframes scrollMarquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+.animate-marquee { display: flex; width: 200%; height: 100%; animation: scrollMarquee 7s linear infinite; }
+
+@keyframes runLegs { 0% { transform: rotate(-12deg); } 100% { transform: rotate(12deg); } }
+.animate-run-f { animation: runLegs 0.3s infinite alternate; }
+.animate-run-b { animation: runLegs 0.3s infinite alternate-reverse; }
+
+@keyframes swingPendulum { 0% { transform: rotate(15deg); } 100% { transform: rotate(-15deg); } }
+.animate-swing { transform-origin: 50% 0%; animation: swingPendulum 3.5s ease-in-out infinite alternate; }
+
+@keyframes tailWag { 0% { transform: rotate(8deg); } 100% { transform: rotate(-8deg); } }
+.animate-tail { animation: tailWag 2.5s ease-in-out infinite alternate; }
+
+@keyframes spinHardware { 100% { transform: rotate(360deg); } }
+.animate-spin-steps { animation: spinHardware 6s steps(16) infinite; }
