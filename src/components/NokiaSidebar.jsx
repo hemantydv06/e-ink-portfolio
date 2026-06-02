@@ -1,6 +1,10 @@
 import React from 'react';
 import clickSound from '../assets/click.wav';
 
+// 1. HARDWARE PRELOAD: Loads into memory the second the site opens
+const preloadedClick = new Audio(clickSound);
+preloadedClick.preload = 'auto'; 
+
 const NokiaSidebar = ({ activeSection, isDesktop }) => {
   const navItems = [
     { id: '#about-sys', screen: 'SYS_INFO', num: '1', desc: 'OVERVIEW' },
@@ -12,9 +16,10 @@ const NokiaSidebar = ({ activeSection, isDesktop }) => {
   const handleNavClick = (e, targetId) => {
     e.preventDefault();
     
-    // --- PLAYS YOUR EXACT AUDIO FILE FOR SIDEBAR CLICKS ---
-   const clickAudio = new Audio(clickSound);
-    clickAudio.play().catch(err => console.log("Audio blocked:", err));
+    // 2. INSTANT FIRE: Clones the preloaded memory file for zero lag
+    // Cloning also allows you to spam the buttons and hear overlapping clicks!
+    const clickClone = preloadedClick.cloneNode();
+    clickClone.play().catch(err => console.log("Audio block by browser:", err));
 
     const targetElement = document.querySelector(targetId);
     if (targetElement) {

@@ -3,6 +3,10 @@ import CanvasSections from './components/CanvasSections';
 import NokiaSidebar from './components/NokiaSidebar';
 import launchSound from './assets/launch.wav';
 
+// 1. HARDWARE PRELOAD
+const preloadedLaunch = new Audio(launchSound);
+preloadedLaunch.preload = 'auto';
+
 const App = () => {
   const [activeSection, setActiveSection] = useState('SYS_INFO');
   const [showTopBtn, setShowTopBtn] = useState(false);
@@ -40,10 +44,9 @@ const App = () => {
   }, []);
 
   const handleScrollToTop = () => {
-    // --- PLAYS YOUR EXACT AUDIO FILE FOR BACK-TO-TOP LAUNCH ---
-    // If you ever want a different sound here, just drop a new file in 'public' and change this name!
-   const launchAudio = new Audio(launchSound);
-    launchAudio.play().catch(err => console.log("Audio blocked:", err));
+    // 2. INSTANT FIRE
+    const launchClone = preloadedLaunch.cloneNode();
+    launchClone.play().catch(err => console.log("Audio block by browser:", err));
 
     setIsLaunching(true);
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -61,12 +64,8 @@ const App = () => {
         style={{ backgroundImage: "url('/topo-bg.jpg')" }} 
       />
 
-      {/* Grid Layout that makes sure Text and Desktop Controller display properly */}
       <div className="grid grid-cols-1 md:grid-cols-[280px_1fr] md:gap-16 max-w-[1150px] w-full px-8 py-14">
-        {/* DESKTOP CONTROLLER */}
         <NokiaSidebar activeSection={activeSection} isDesktop={true} />
-        
-        {/* THE MAIN TEXT COMPONENT */}
         <CanvasSections activeSection={activeSection} />
       </div>
 
