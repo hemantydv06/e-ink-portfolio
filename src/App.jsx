@@ -73,6 +73,10 @@ const App = () => {
         }`}
       >
         <div className="relative">
+          
+          {/* NEW: Retro Ambient LED Glow */}
+          <div className="absolute -inset-3 bg-te-orange/30 blur-xl rounded-full z-[-1] animate-pulse"></div>
+
           {/* The Button */}
           <button 
             onClick={handleScrollToTop} 
@@ -83,7 +87,7 @@ const App = () => {
             <i className="fa-solid fa-eject text-eink-ink"></i>
           </button>
 
-          {/* The High-Speed Wind Trails (Only renders when clicked) */}
+          {/* The High-Speed Wind Trails */}
           {isLaunching && (
              <div className="absolute top-full left-0 w-full h-24 pointer-events-none overflow-visible z-[-1]">
                 <div className="absolute top-0 left-[20%] w-[2px] bg-eink-ink animate-wind-1"></div>
@@ -96,6 +100,5 @@ const App = () => {
 
     </div>
   );
-};
 
 export default App;
