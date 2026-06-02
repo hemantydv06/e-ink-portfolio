@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import CanvasSections from './components/CanvasSections';
+import NokiaSidebar from './components/NokiaSidebar'; // Import it back here!
 
 const App = () => {
   const [activeSection, setActiveSection] = useState('SYS_INFO');
@@ -30,9 +31,12 @@ const App = () => {
         style={{ backgroundImage: "url('/topo-bg.jpg')" }} 
       />
 
-      {/* Changed to a clean, single-column centered layout */}
-      <div className="flex flex-col w-full max-w-[850px] px-8 py-14">
-        {/* Pass the state directly into the canvas */}
+      {/* Grid restored! 1 column on phone, 2 columns on laptop */}
+      <div className="grid grid-cols-1 md:grid-cols-[280px_1fr] md:gap-16 max-w-[1150px] w-full px-8 py-14">
+        
+        {/* DESKTOP CONTROLLER (Visible only on laptops) */}
+        <NokiaSidebar activeSection={activeSection} isDesktop={true} />
+        
         <CanvasSections activeSection={activeSection} />
       </div>
 

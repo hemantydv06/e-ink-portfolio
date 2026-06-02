@@ -1,6 +1,6 @@
 import React from 'react';
 
-const NokiaSidebar = ({ activeSection }) => {
+const NokiaSidebar = ({ activeSection, isDesktop }) => {
   const navItems = [
     { id: '#about-sys', screen: 'SYS_INFO', num: '1', desc: 'OVERVIEW' },
     { id: '#projects-sys', screen: 'DEPLOYMENTS', num: '2', desc: 'WORK' },
@@ -17,12 +17,18 @@ const NokiaSidebar = ({ activeSection }) => {
     }
   };
 
+  // Switch between Desktop (fixed left) and Mobile (inline) wrappers
+  const wrapperClass = isDesktop 
+    ? "hidden md:block relative w-[280px]" 
+    : "block md:hidden relative w-full max-w-[450px] my-10";
+
+  const asideClass = isDesktop
+    ? "fixed top-24 -ml-6 w-[280px]"
+    : "w-full";
+
   return (
-    /* We made it slightly wider (450px) and gave it a top/bottom margin (my-12) to frame it nicely */
-    <div className="relative w-full max-w-[450px] my-12"> 
-      
-      {/* Removed all 'fixed' and 'sticky' constraints. It is now a static block element. */}
-      <aside className="w-full bg-eink-bg border-4 border-eink-ink rounded-sm p-6 shadow-hardware flex flex-col gap-6 relative overflow-hidden">
+    <div className={wrapperClass}> 
+      <aside className={`${asideClass} bg-eink-bg border-4 border-eink-ink rounded-sm p-6 shadow-hardware flex flex-col gap-6 relative overflow-hidden`}>
         
         {/* Industrial Screws / Fasteners */}
         <div className="absolute top-2 left-2 w-2 h-2 rounded-full border-2 border-eink-ink"></div>

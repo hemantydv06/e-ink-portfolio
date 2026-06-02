@@ -1,5 +1,5 @@
 import React from 'react';
-import NokiaSidebar from './NokiaSidebar'; // Import the hardware controller
+import NokiaSidebar from './NokiaSidebar';
 
 const projectsData = [
   {
@@ -24,14 +24,14 @@ const skillsData = [
 
 const CanvasSections = ({ activeSection }) => {
   return (
-    <main className="flex flex-col gap-32 pt-4 pb-32">
+    <main className="flex flex-col gap-32 pt-4 pb-32 w-full max-w-[850px]">
       
       <section id="about-sys" className="scroll-section relative" data-screen="SYS_INFO">
         <h1 className="font-mono text-5xl font-bold uppercase leading-tight">Hemant Yadav</h1>
         <p className="font-mono font-semibold opacity-85 text-base mt-3">ID // 2K24CSUN01285 | CSE.AI_YEAR_2</p>
         
-        {/* === EMBEDDED CONTROLLER DASHBOARD === */}
-        <NokiaSidebar activeSection={activeSection} />
+        {/* === MOBILE CONTROLLER (Visible only on phones, hidden on laptops) === */}
+        <NokiaSidebar activeSection={activeSection} isDesktop={false} />
 
         <h2 className="border-b-4 border-eink-ink inline-block mb-8 font-mono text-3xl uppercase">System Overview</h2>
         
