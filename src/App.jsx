@@ -23,7 +23,6 @@ const App = () => {
     sections.forEach((section) => observer.observe(section));
 
     const handleScroll = () => {
-      // Show button after scrolling down 400px
       if (window.scrollY > 400) {
         setShowTopBtn(true);
       } else {
@@ -43,7 +42,6 @@ const App = () => {
     setIsLaunching(true);
     window.scrollTo({ top: 0, behavior: 'smooth' });
     
-    // Reset animation state after 800ms
     setTimeout(() => {
       setIsLaunching(false);
     }, 800);
@@ -72,8 +70,8 @@ const App = () => {
       >
         <div className="relative flex items-center justify-center">
           
-          {/* HIGH-VISIBILITY RED GLOW */}
-          <div className="absolute -inset-3 bg-red-600 opacity-60 blur-md rounded-full animate-pulse pointer-events-none z-0"></div>
+          {/* SIGNATURE TE-ORANGE GLOW */}
+          <div className="absolute -inset-1.5 bg-te-orange opacity-40 blur-md rounded-lg animate-pulse pointer-events-none z-0"></div>
 
           {/* The Button */}
           <button 
@@ -81,7 +79,8 @@ const App = () => {
             className={`hardware-btn relative z-10 w-14 h-14 !p-0 flex flex-col items-center justify-center gap-1.5 ${isLaunching ? 'animate-rocket' : ''}`}
             title="Return to Top"
           >
-            <div className="w-1.5 h-1.5 bg-red-600 rounded-full animate-blink"></div>
+            {/* LED Indicator matched to TE-Orange */}
+            <div className="w-1.5 h-1.5 bg-te-orange rounded-full animate-blink"></div>
             <i className="fa-solid fa-eject text-eink-ink"></i>
           </button>
 
