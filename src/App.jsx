@@ -39,7 +39,8 @@ const App = () => {
   }, []);
 
   const handleScrollToTop = () => {
-    // --- PLAY LAUNCH SOUND ---
+    // --- PLAYS YOUR EXACT AUDIO FILE FOR BACK-TO-TOP LAUNCH ---
+    // If you ever want a different sound here, just drop a new file in 'public' and change this name!
     const launchAudio = new Audio('/launch.wav');
     launchAudio.play().catch(err => console.log("Audio block by browser:", err));
 
@@ -59,10 +60,12 @@ const App = () => {
         style={{ backgroundImage: "url('/topo-bg.jpg')" }} 
       />
 
+      {/* Grid Layout that makes sure Text and Desktop Controller display properly */}
       <div className="grid grid-cols-1 md:grid-cols-[280px_1fr] md:gap-16 max-w-[1150px] w-full px-8 py-14">
         {/* DESKTOP CONTROLLER */}
         <NokiaSidebar activeSection={activeSection} isDesktop={true} />
         
+        {/* THE MAIN TEXT COMPONENT */}
         <CanvasSections activeSection={activeSection} />
       </div>
 
@@ -74,10 +77,8 @@ const App = () => {
       >
         <div className="relative flex items-center justify-center">
           
-          {/* SIGNATURE TE-ORANGE GLOW */}
           <div className="absolute -inset-1.5 bg-te-orange opacity-40 blur-md rounded-lg animate-pulse pointer-events-none z-0"></div>
 
-          {/* The Button */}
           <button 
             onClick={handleScrollToTop} 
             className={`hardware-btn relative z-10 w-14 h-14 !p-0 flex flex-col items-center justify-center gap-1.5 ${isLaunching ? 'animate-rocket' : ''}`}
@@ -87,7 +88,6 @@ const App = () => {
             <i className="fa-solid fa-eject text-eink-ink"></i>
           </button>
 
-          {/* The High-Speed Wind Trails */}
           {isLaunching && (
              <div className="absolute top-full left-0 w-full h-24 pointer-events-none overflow-visible z-[-1]">
                 <div className="absolute top-0 left-[20%] w-[2px] bg-eink-ink animate-wind-1"></div>

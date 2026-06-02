@@ -11,8 +11,7 @@ const NokiaSidebar = ({ activeSection, isDesktop }) => {
   const handleNavClick = (e, targetId) => {
     e.preventDefault();
     
-    // --- PLAY CLICK SOUND ---
-    // Creates a new audio instance so rapid clicks can overlap naturally
+    // --- PLAYS YOUR EXACT AUDIO FILE FOR SIDEBAR CLICKS ---
     const clickAudio = new Audio('/click.wav');
     clickAudio.play().catch(err => console.log("Audio block by browser:", err));
 
@@ -35,19 +34,16 @@ const NokiaSidebar = ({ activeSection, isDesktop }) => {
     <div className={wrapperClass}> 
       <aside className={`${asideClass} bg-eink-bg border-4 border-eink-ink rounded-sm p-6 shadow-hardware flex flex-col gap-6 relative overflow-hidden`}>
         
-        {/* Industrial Screws / Fasteners */}
         <div className="absolute top-2 left-2 w-2 h-2 rounded-full border-2 border-eink-ink"></div>
         <div className="absolute top-2 right-2 w-2 h-2 rounded-full border-2 border-eink-ink"></div>
         <div className="absolute bottom-2 left-2 w-2 h-2 rounded-full border-2 border-eink-ink"></div>
         <div className="absolute bottom-2 right-2 w-2 h-2 rounded-full border-2 border-eink-ink"></div>
 
-        {/* Header Branding */}
         <div className="flex justify-between items-end border-b-2 border-eink-ink pb-2">
           <div className="font-serif font-bold text-sm tracking-tighter uppercase">Teenage<br/>Engineering<br/>Vibe</div>
           <div className="font-mono text-xs font-bold bg-eink-ink text-eink-bg px-1">MODEL: HY-2026</div>
         </div>
 
-        {/* LCD Screen Element */}
         <div className="w-full bg-eink-screen border-4 border-eink-ink p-4 flex flex-col justify-between h-32 relative">
           <div className="flex justify-between items-center text-eink-ink text-xs font-mono font-bold">
             <span>TX/RX</span>
@@ -63,7 +59,6 @@ const NokiaSidebar = ({ activeSection, isDesktop }) => {
           </div>
         </div>
 
-        {/* Hardware Buttons Matrix */}
         <nav className="grid grid-cols-2 gap-4 w-full">
           {navItems.map((item) => (
             <a 
@@ -81,7 +76,6 @@ const NokiaSidebar = ({ activeSection, isDesktop }) => {
           ))}
         </nav>
 
-        {/* LED Status Bar */}
         <div className="w-full h-8 border-2 border-eink-ink flex items-center justify-between px-2 bg-white">
           <span className="font-mono text-[0.6rem] font-bold">SEQ_RUNNING</span>
           <div className="flex gap-1">
