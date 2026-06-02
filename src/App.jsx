@@ -8,7 +8,6 @@ const App = () => {
   const [isLaunching, setIsLaunching] = useState(false);
 
   useEffect(() => {
-    // 1. Observer for the side controller
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -23,8 +22,8 @@ const App = () => {
     const sections = document.querySelectorAll('.scroll-section');
     sections.forEach((section) => observer.observe(section));
 
-    // 2. Scroll listener to show/hide the "Back to Top" button
     const handleScroll = () => {
+      // Show button after scrolling down 400px
       if (window.scrollY > 400) {
         setShowTopBtn(true);
       } else {
@@ -40,12 +39,11 @@ const App = () => {
     };
   }, []);
 
-  // Function to trigger the warp speed animation and scroll to top
   const handleScrollToTop = () => {
     setIsLaunching(true);
     window.scrollTo({ top: 0, behavior: 'smooth' });
     
-    // Reset the animation state after 800ms (matches CSS duration)
+    // Reset animation state after 800ms
     setTimeout(() => {
       setIsLaunching(false);
     }, 800);
@@ -72,18 +70,18 @@ const App = () => {
           showTopBtn ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-10 pointer-events-none'
         }`}
       >
-        <div className="relative">
+        <div className="relative flex items-center justify-center">
           
-          {/* NEW: Retro Ambient LED Glow */}
-          <div className="absolute -inset-3 bg-te-orange/30 blur-xl rounded-full z-[-1] animate-pulse"></div>
+          {/* HIGH-VISIBILITY RED GLOW */}
+          <div className="absolute -inset-3 bg-red-600 opacity-60 blur-md rounded-full animate-pulse pointer-events-none z-0"></div>
 
           {/* The Button */}
           <button 
             onClick={handleScrollToTop} 
-            className={`hardware-btn w-14 h-14 !p-0 flex flex-col items-center justify-center gap-1.5 ${isLaunching ? 'animate-rocket' : ''}`}
+            className={`hardware-btn relative z-10 w-14 h-14 !p-0 flex flex-col items-center justify-center gap-1.5 ${isLaunching ? 'animate-rocket' : ''}`}
             title="Return to Top"
           >
-            <div className="w-1.5 h-1.5 bg-te-orange rounded-full animate-blink"></div>
+            <div className="w-1.5 h-1.5 bg-red-600 rounded-full animate-blink"></div>
             <i className="fa-solid fa-eject text-eink-ink"></i>
           </button>
 
@@ -100,5 +98,6 @@ const App = () => {
 
     </div>
   );
+};
 
 export default App;
