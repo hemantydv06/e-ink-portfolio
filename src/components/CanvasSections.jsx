@@ -76,7 +76,7 @@ const skillsData = [
 
 const CanvasSections = ({ activeSection }) => {
   return (
-    <main className="flex flex-col gap-32 pt-4 pb-32 w-full max-w-[850px]">
+    <main className="flex flex-col gap-32 pt-4 pb-16 w-full max-w-[850px]">
       
       <section id="about-sys" className="scroll-section relative" data-screen="SYS_INFO">
         <TypewriterIntro />
@@ -87,10 +87,9 @@ const CanvasSections = ({ activeSection }) => {
 
         <h2 className="border-b-4 border-eink-ink inline-block mb-8 font-mono text-3xl uppercase">System Overview</h2>
         
-        {/* === UPDATED: Injected AI/ML/ANN Terminology === */}
         <div className="sketch-frame text-xl leading-relaxed">
           <p>
-            Certified <strong>Java Web Developer</strong> and Computer Science Engineering student bridging the gap between scalable web architecture and intelligent systems[cite: 2, 6, 7]. Proven ability to architect robust backend logic, engineer predictive <strong>Machine Learning</strong> pipelines, and deploy <strong>Artificial Neural Networks (ANN)</strong> for real-world automation[cite: 35, 36].
+            Certified <strong>Java Web Developer</strong> and Computer Science Engineering student bridging the gap between scalable web architecture and intelligent systems. Proven ability to architect robust backend logic, engineer predictive <strong>Machine Learning</strong> pipelines, and deploy <strong>Artificial Neural Networks (ANN)</strong> for real-world automation.
           </p>
         </div>
         
@@ -113,7 +112,6 @@ const CanvasSections = ({ activeSection }) => {
               <h3 className="text-3xl font-mono font-bold mb-4">{project.title}</h3>
               <p className="text-xl opacity-90">{project.desc}</p>
               
-              {/* === UPDATED: Tags and Hardware Deployment Buttons === */}
               <div className="mt-6 flex flex-col md:flex-row md:items-center justify-between gap-5 border-t-2 border-dashed border-eink-ink pt-5">
                 
                 <div className="flex flex-wrap gap-3 font-mono text-sm font-bold">
@@ -191,6 +189,53 @@ const CanvasSections = ({ activeSection }) => {
           </div>
         </div>
       </section>
+
+      {/* === HARDWARE MANUFACTURER SPEC PLATE FOOTER === */}
+      <footer className="mt-16 bg-eink-ink text-white border-4 border-eink-ink p-6 md:p-8 shadow-[8px_8px_0px_#222222] relative flex flex-col md:flex-row justify-between gap-8 z-10 overflow-hidden">
+        
+        {/* Bolt Accents */}
+        <div className="absolute top-2 right-2 w-1.5 h-1.5 rounded-full bg-white opacity-40"></div>
+        <div className="absolute bottom-2 left-2 w-1.5 h-1.5 rounded-full bg-white opacity-40"></div>
+
+        <div className="flex flex-col gap-2 relative z-10">
+          <div className="flex items-center gap-2 mb-1">
+             <div className="w-2 h-2 bg-green-500 rounded-full animate-blink"></div>
+             <span className="font-mono text-xs font-bold text-green-500 tracking-widest">SYSTEMS_ONLINE</span>
+          </div>
+          <h2 className="font-mono text-4xl font-black uppercase tracking-tighter">Hemant Yadav</h2>
+          <p className="font-mono text-sm font-bold text-gray-400">ENGINEER // GURUGRAM, HARYANA</p>
+
+          {/* Contact Array */}
+          <div className="flex flex-col gap-3 mt-5 border-t-2 border-dashed border-gray-600 pt-5">
+            <a href="mailto:yadavhemant1002@gmail.com" className="font-mono text-sm font-bold flex items-center gap-3 hover:text-te-orange transition-colors w-fit">
+               <i className="fa-solid fa-envelope text-gray-400"></i> yadavhemant1002@gmail.com
+            </a>
+            <a href="tel:+919953568400" className="font-mono text-sm font-bold flex items-center gap-3 hover:text-te-orange transition-colors w-fit">
+               <i className="fa-solid fa-phone text-gray-400"></i> +91 9953568400
+            </a>
+          </div>
+        </div>
+
+        {/* Technical Stamp Block */}
+        <div className="flex flex-col items-start md:items-end justify-between relative z-10">
+          <div className="flex gap-1 h-12 mb-4 bg-white p-2 border-2 border-white w-fit">
+             <div className="w-1.5 bg-eink-ink"></div>
+             <div className="w-3 bg-eink-ink"></div>
+             <div className="w-1 bg-eink-ink"></div>
+             <div className="w-2 bg-eink-ink"></div>
+             <div className="w-4 bg-eink-ink"></div>
+             <div className="w-1 bg-eink-ink"></div>
+             <div className="w-2 bg-eink-ink"></div>
+             <div className="w-1.5 bg-eink-ink"></div>
+             <div className="w-0.5 bg-eink-ink"></div>
+          </div>
+          <div className="text-left md:text-right">
+             <div className="font-mono text-[0.65rem] font-bold tracking-widest text-gray-400">ID: 2K24CSUN01285</div>
+             <div className="font-mono text-[0.65rem] font-bold tracking-widest text-te-orange mt-1">MFG YEAR: 2026</div>
+          </div>
+        </div>
+
+      </footer>
 
     </main>
   );
