@@ -1,13 +1,24 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import clickSound from '../assets/click.wav';
+// 1. IMPORT YOUR LOCAL RADIO MP3
+import radioSound from '../assets/radio.mp3';
 
 const preloadedClick = new Audio(clickSound);
 preloadedClick.preload = 'auto';
 
 const NokiaSidebar = ({ activeSection, isDesktop }) => {
-  const radioRef = useRef(new Audio('https://coderadio-admin-v2.freecodecamp.org/radio/8000/radio.mp3'));
+  // 2. USE THE LOCAL FILE INSTEAD OF THE URL
+  const radioRef = useRef(new Audio(radioSound));
   const [isRadioPlaying, setIsRadioPlaying] = useState(false);
   const [toast, setToast] = useState(null);
+
+  // 3. SET THE HARDWARE TO LOOP THE AUDIO FOREVER
+  useEffect(() => {
+    if (radioRef.current) {
+      radioRef.current.loop = true;
+      radioRef.current.preload = 'auto'; // Preloads the track for zero-latency start
+    }
+  }, []);
 
   const navItems = [
     { id: '#about-sys', screen: 'SYS_INFO', num: '1', desc: 'OVERVIEW' },
@@ -42,16 +53,11 @@ const NokiaSidebar = ({ activeSection, isDesktop }) => {
       setToast('RADIO: OFF');
       setTimeout(() => setToast(null), 2000);
     } else {
-      setToast('CONNECTING...');
-      radioRef.current.play().then(() => {
-        setIsRadioPlaying(true);
-        setToast('RADIO: ON [LOFI]');
-        setTimeout(() => setToast(null), 3000);
-      }).catch(err => {
-        console.log("Stream blocked:", err);
-        setToast('ERR: BLOCKED');
-        setTimeout(() => setToast(null), 3000);
-      });
+      // 4. INSTANT START (No more buffering delay!)
+      radioRef.current.play().catch(err => console.log("Audio blocked:", err));
+      setIsRadioPlaying(true);
+      setToast('RADIO: ON [LOFI]');
+      setTimeout(() => setToast(null), 2000);
     }
   };
 
@@ -62,25 +68,23 @@ const NokiaSidebar = ({ activeSection, isDesktop }) => {
   return (
     <div className={wrapperClass}> 
 
-      {/* ORIGINAL NOTIFICATION TOAST */}
+      {/* NOTIFICATION TOAST (Removed the CONNECTING state logic) */}
       {toast && (
         <div className="absolute -top-12 left-0 w-full bg-eink-ink text-white font-mono text-xs font-bold py-2 px-4 rounded border-2 border-eink-ink flex items-center justify-between z-50 animate-pulse">
           <span>{toast}</span>
-          {isRadioPlaying && <div className="w-2 h-2 bg-red-500 rounded-full animate-blink"></div>}
+          <div className={`w-2 h-2 rounded-full ${isRadioPlaying ? 'bg-te-orange animate-blink' : 'bg-red-500'}`}></div>
         </div>
       )}
 
       {/* ORIGINAL 3D SIDE PANEL (LEFT EDGE) */}
       <div className="w-12 bg-[#D1D1D1] border-4 border-r-0 border-eink-ink rounded-l-xl flex flex-col items-center justify-start pt-12 pb-6 gap-6 shadow-[inset_4px_0px_0px_rgba(255,255,255,0.5)] z-0 relative mt-2 mb-2">
          
-         {/* Original Tactile Power Button */}
          <button 
            onClick={triggerClickSound}
            className="w-4 h-12 bg-eink-ink border-2 border-eink-ink rounded-sm shadow-hardware active:shadow-hardware-pressed active:translate-x-[2px] active:translate-y-[2px] transition-all" 
            title="Power Dump"
          ></button>
 
-         {/* Original Lofi Radio Toggle Button */}
          <button 
             onClick={toggleRadio} 
             className={`w-6 h-12 border-2 border-eink-ink rounded-sm shadow-hardware active:shadow-hardware-pressed active:translate-x-[2px] active:translate-y-[2px] transition-all flex items-center justify-center ${isRadioPlaying ? 'bg-te-orange text-white' : 'bg-white text-eink-ink'}`}
@@ -116,7 +120,6 @@ const NokiaSidebar = ({ activeSection, isDesktop }) => {
           </div>
         </div>
 
-        {/* Original Grid with standard sizes */}
         <nav className="grid grid-cols-2 gap-4 w-full">
           {navItems.map((item) => (
             <a 
