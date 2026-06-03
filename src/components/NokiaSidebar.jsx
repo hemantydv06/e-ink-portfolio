@@ -1,22 +1,19 @@
 import React, { useState, useRef, useEffect } from 'react';
 import clickSound from '../assets/click.wav';
-// 1. IMPORT YOUR LOCAL RADIO MP3
 import radioSound from '../assets/radio.mp3';
 
 const preloadedClick = new Audio(clickSound);
 preloadedClick.preload = 'auto';
 
 const NokiaSidebar = ({ activeSection, isDesktop }) => {
-  // 2. USE THE LOCAL FILE INSTEAD OF THE URL
   const radioRef = useRef(new Audio(radioSound));
   const [isRadioPlaying, setIsRadioPlaying] = useState(false);
   const [toast, setToast] = useState(null);
 
-  // 3. SET THE HARDWARE TO LOOP THE AUDIO FOREVER
   useEffect(() => {
     if (radioRef.current) {
       radioRef.current.loop = true;
-      radioRef.current.preload = 'auto'; // Preloads the track for zero-latency start
+      radioRef.current.preload = 'auto'; 
     }
   }, []);
 
@@ -33,14 +30,21 @@ const NokiaSidebar = ({ activeSection, isDesktop }) => {
     clickClone.play().catch(() => {});
   };
 
+  // === UPDATED SYNC ENGINE ===
   const handleNavClick = (e, targetId) => {
     e.preventDefault();
+    
+    // 1. Fire the sound instantly on frame zero
     triggerClickSound();
 
     const targetElement = document.querySelector(targetId);
     if (targetElement) {
       const yOffset = targetElement.getBoundingClientRect().top + window.scrollY - 40;
-      window.scrollTo({ top: yOffset, behavior: 'smooth' });
+      
+      // 2. Delay the scroll by exactly 50ms so it aligns with the peak of the audio wave
+      setTimeout(() => {
+        window.scrollTo({ top: yOffset, behavior: 'smooth' });
+      }, 50);
     }
   };
 
@@ -53,7 +57,6 @@ const NokiaSidebar = ({ activeSection, isDesktop }) => {
       setToast('RADIO: OFF');
       setTimeout(() => setToast(null), 2000);
     } else {
-      // 4. INSTANT START (No more buffering delay!)
       radioRef.current.play().catch(err => console.log("Audio blocked:", err));
       setIsRadioPlaying(true);
       setToast('RADIO: ON [LOFI]');
@@ -68,7 +71,6 @@ const NokiaSidebar = ({ activeSection, isDesktop }) => {
   return (
     <div className={wrapperClass}> 
 
-      {/* NOTIFICATION TOAST (Removed the CONNECTING state logic) */}
       {toast && (
         <div className="absolute -top-12 left-0 w-full bg-eink-ink text-white font-mono text-xs font-bold py-2 px-4 rounded border-2 border-eink-ink flex items-center justify-between z-50 animate-pulse">
           <span>{toast}</span>
@@ -76,7 +78,6 @@ const NokiaSidebar = ({ activeSection, isDesktop }) => {
         </div>
       )}
 
-      {/* ORIGINAL 3D SIDE PANEL (LEFT EDGE) */}
       <div className="w-12 bg-[#D1D1D1] border-4 border-r-0 border-eink-ink rounded-l-xl flex flex-col items-center justify-start pt-12 pb-6 gap-6 shadow-[inset_4px_0px_0px_rgba(255,255,255,0.5)] z-0 relative mt-2 mb-2">
          
          <button 
@@ -94,7 +95,6 @@ const NokiaSidebar = ({ activeSection, isDesktop }) => {
          </button>
       </div>
 
-      {/* ORIGINAL MAIN FRONT FACE */}
       <aside className="flex-1 bg-eink-bg border-4 border-eink-ink rounded-r-xl rounded-l-sm p-6 shadow-[10px_10px_0px_#222222] flex flex-col gap-6 z-10 relative bg-noise">
         
         <div className="absolute top-2 right-2 w-2 h-2 rounded-full border-2 border-eink-ink"></div>
