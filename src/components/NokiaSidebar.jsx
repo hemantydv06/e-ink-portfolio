@@ -97,7 +97,6 @@ const NokiaSidebar = ({ activeSection, isDesktop }) => {
 
         <div className="flex justify-between items-end border-b-2 border-eink-ink pb-2">
           <div className="font-serif font-bold text-sm tracking-tighter uppercase">Teenage<br/>Engineering<br/>Vibe</div>
-          {/* Reverted back to text-eink-bg */}
           <div className="font-mono text-xs font-bold bg-eink-ink text-eink-bg px-1">MODEL: HY-2026</div>
         </div>
 
@@ -133,11 +132,36 @@ const NokiaSidebar = ({ activeSection, isDesktop }) => {
           ))}
         </nav>
 
-        <div className="w-full h-8 border-2 border-eink-ink flex items-center justify-between px-2 bg-white">
-          <span className="font-mono text-[0.6rem] font-bold">SEQ_RUNNING</span>
-          <div className="flex gap-1">
-            <div className={`w-2 h-2 rounded-full ${isRadioPlaying ? 'bg-red-500 animate-blink' : 'bg-te-orange animate-blink'}`}></div>
-          </div>
+        {/* --- COMM SWITCHES: Mail and Phone Buttons --- */}
+        <div className="flex gap-2 w-full mt-auto">
+          
+          <a 
+            href="mailto:yadavhemant1002@gmail.com"
+            onClick={triggerClickSound}
+            className="flex-1 bg-white border-2 border-eink-ink h-8 flex items-center justify-between px-2 shadow-hardware active:shadow-hardware-pressed active:translate-x-[2px] active:translate-y-[2px] transition-all hover:bg-gray-100"
+            title="Send Email"
+          >
+            <div className="flex items-center gap-1.5">
+              <i className="fa-solid fa-envelope text-eink-ink text-[0.6rem]"></i>
+              <span className="font-mono text-[0.55rem] font-bold">MAIL</span>
+            </div>
+            <div className="w-1.5 h-1.5 rounded-full bg-te-orange animate-blink"></div>
+          </a>
+
+          <a 
+            href="tel:+919953568400"
+            onClick={triggerClickSound}
+            className="flex-1 bg-white border-2 border-eink-ink h-8 flex items-center justify-between px-2 shadow-hardware active:shadow-hardware-pressed active:translate-x-[2px] active:translate-y-[2px] transition-all hover:bg-gray-100"
+            title="Initiate Call"
+          >
+            <div className="flex items-center gap-1.5">
+              <i className="fa-solid fa-phone text-eink-ink text-[0.6rem]"></i>
+              <span className="font-mono text-[0.55rem] font-bold">CALL</span>
+            </div>
+            {/* Added 0.5s animation delay so the two lights blink out of sync */}
+            <div className="w-1.5 h-1.5 rounded-full bg-red-500 animate-blink" style={{ animationDelay: '0.5s' }}></div>
+          </a>
+
         </div>
       </aside>
     </div>
