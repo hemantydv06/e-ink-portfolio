@@ -3,7 +3,6 @@ import CanvasSections from './components/CanvasSections';
 import NokiaSidebar from './components/NokiaSidebar';
 import launchSound from './assets/launch.wav';
 
-// 1. HARDWARE PRELOAD
 const preloadedLaunch = new Audio(launchSound);
 preloadedLaunch.preload = 'auto';
 
@@ -44,7 +43,6 @@ const App = () => {
   }, []);
 
   const handleScrollToTop = () => {
-    // 2. INSTANT FIRE
     const launchClone = preloadedLaunch.cloneNode();
     launchClone.play().catch(err => console.log("Audio block by browser:", err));
 
@@ -64,7 +62,8 @@ const App = () => {
         style={{ backgroundImage: "url('/topo-bg.jpg')" }} 
       />
 
-      <div className="grid grid-cols-1 md:grid-cols-[280px_1fr] md:gap-16 max-w-[1150px] w-full px-8 py-14">
+      {/* --- GRID FIX: Widened the first column to 320px to fit the 3D controller --- */}
+      <div className="grid grid-cols-1 md:grid-cols-[320px_1fr] md:gap-16 max-w-[1150px] w-full px-8 py-14">
         <NokiaSidebar activeSection={activeSection} isDesktop={true} />
         <CanvasSections activeSection={activeSection} />
       </div>
