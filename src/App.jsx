@@ -57,23 +57,23 @@ const App = () => {
   return (
     <div className="relative flex justify-center min-h-screen bg-eink-bg overflow-hidden">
       
-      {/* === INDUSTRIAL SYNTH BACKPLATE DESIGN === */}
+      {/* === INDUSTRIAL SYNTH BACKPLATE DESIGN (HIGH INTENSITY) === */}
       
-      {/* 1. Grip Tape Panel on Left (Simulates a textured handling grip) */}
+      {/* 1. Grip Tape Panel on Left (Cranked opacity to 10% and darkened the border) */}
       <div 
-        className="fixed top-0 left-0 w-16 md:w-[280px] h-full pointer-events-none z-0 border-r-2 border-eink-ink/10 shadow-[2px_0_0_rgba(255,255,255,0.8)]" 
+        className="fixed top-0 left-0 w-16 md:w-[280px] h-full pointer-events-none z-0 border-r-4 border-eink-ink/20 shadow-[2px_0_0_rgba(255,255,255,1)]" 
         style={{
-          backgroundImage: 'repeating-linear-gradient(-45deg, transparent, transparent 2px, rgba(34, 34, 34, 0.03) 2px, rgba(34, 34, 34, 0.03) 4px)'
+          backgroundImage: 'repeating-linear-gradient(-45deg, transparent, transparent 2px, rgba(34, 34, 34, 0.1) 2px, rgba(34, 34, 34, 0.1) 4px)'
         }}
       ></div>
 
-      {/* 2. Molded Plastic Hardware Stamp (Massive faint lettering in background) */}
-      <div className="fixed -bottom-16 -right-8 font-mono font-black text-[15rem] md:text-[22rem] text-eink-ink opacity-[0.02] pointer-events-none z-0 select-none leading-none tracking-tighter shadow-inner">
+      {/* 2. Molded Plastic Hardware Stamp (Cranked opacity from 0.02 up to 0.08) */}
+      <div className="fixed -bottom-16 -right-8 font-mono font-black text-[15rem] md:text-[22rem] text-eink-ink opacity-[0.08] pointer-events-none z-0 select-none leading-none tracking-tighter shadow-inner">
         HY<br/>26
       </div>
 
-      {/* 3. Faux Laser-Etched Decal & Barcode (Top Right) */}
-      <div className="fixed top-24 right-12 pointer-events-none z-0 flex-col items-end opacity-[0.15] hidden xl:flex">
+      {/* 3. Faux Laser-Etched Decal & Barcode (Cranked opacity from 15% to 50%) */}
+      <div className="fixed top-24 right-12 pointer-events-none z-0 flex-col items-end opacity-50 hidden xl:flex">
         <div className="flex gap-1 h-14 mb-2">
            <div className="w-1.5 bg-eink-ink"></div>
            <div className="w-3 bg-eink-ink"></div>
