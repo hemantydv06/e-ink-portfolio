@@ -97,8 +97,8 @@ const NokiaSidebar = ({ activeSection, isDesktop }) => {
 
         <div className="flex justify-between items-end border-b-2 border-eink-ink pb-2">
           <div className="font-serif font-bold text-sm tracking-tighter uppercase">Teenage<br/>Engineering<br/>Vibe</div>
-          {/* --- UPDATED: HY-2026 is now te-orange --- */}
-          <div className="font-mono text-xs font-bold bg-eink-ink text-te-orange px-1">MODEL: HY-2026</div>
+          {/* Reverted back to text-eink-bg */}
+          <div className="font-mono text-xs font-bold bg-eink-ink text-eink-bg px-1">MODEL: HY-2026</div>
         </div>
 
         <div className="w-full bg-eink-screen border-4 border-eink-ink p-4 flex flex-col justify-between h-32 relative">

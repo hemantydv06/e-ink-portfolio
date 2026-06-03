@@ -55,7 +55,7 @@ const App = () => {
   };
 
   return (
-    <div className="relative flex justify-center min-h-screen bg-eink-bg overflow-x-hidden">
+    <div className="relative flex justify-center min-h-screen bg-eink-bg">
       
       {/* 1. Grip Tape Panel */}
       <div 
@@ -65,8 +65,8 @@ const App = () => {
         }}
       ></div>
 
-      {/* 2. Molded Plastic Hardware Stamp */}
-      <div className="fixed -bottom-16 -right-8 font-mono font-black text-[15rem] md:text-[22rem] text-eink-ink opacity-[0.08] pointer-events-none z-0 select-none leading-none tracking-tighter shadow-inner">
+      {/* 2. Molded Plastic Hardware Stamp (NOW ORANGE) */}
+      <div className="fixed -bottom-16 -right-8 font-mono font-black text-[15rem] md:text-[22rem] text-te-orange opacity-[0.15] pointer-events-none z-0 select-none leading-none tracking-tighter shadow-inner">
         HY<br/>26
       </div>
 
