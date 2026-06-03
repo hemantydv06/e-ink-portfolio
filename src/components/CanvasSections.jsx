@@ -52,13 +52,19 @@ const projectsData = [
     title: "LedgerLease",
     badge: "Full-Stack SaaS",
     desc: "Engineered a rental management platform using React for a dynamic frontend and Firebase/SQL for secure storage. Integrated Razorpay API for real-time payments, automated billing, and a secure Tenant Complaint System with zero-latency synchronization.",
-    tags: ["#React", "#Java", "#SQL", "#Firebase", "#Razorpay"]
+    tags: ["#React", "#Java", "#SQL", "#Firebase", "#Razorpay"],
+    btnText: "[ SYSTEM_LIVE ]",
+    btnLink: "https://rent-optimizer-gamma.vercel.app/",
+    isDisabled: false
   },
   {
     title: "Autonomous Indoor Farming",
     badge: "Web / ML Dashboard",
     desc: "Built a responsive web interface to monitor real-time plant growth. Engineered automated data pipelines for sensor preprocessing and deployed ML predictive models to analyze environmental trends, automate care scheduling, and forecast harvests.",
-    tags: ["#Python", "#MachineLearning", "#UI/UX", "#DataPipelines"]
+    tags: ["#Python", "#MachineLearning", "#UI/UX", "#DataPipelines"],
+    btnText: "[ ERR: NOT_AVAILABLE ]",
+    btnLink: "#",
+    isDisabled: true
   }
 ];
 
@@ -81,8 +87,11 @@ const CanvasSections = ({ activeSection }) => {
 
         <h2 className="border-b-4 border-eink-ink inline-block mb-8 font-mono text-3xl uppercase">System Overview</h2>
         
+        {/* === UPDATED: Injected AI/ML/ANN Terminology === */}
         <div className="sketch-frame text-xl leading-relaxed">
-          <p>Certified <strong>Java Web Developer</strong> and Computer Science Engineering student with a high-efficiency mindset. Proven ability to build full-stack applications and architect scalable backend logic.</p>
+          <p>
+            Certified <strong>Java Web Developer</strong> and Computer Science Engineering student bridging the gap between scalable web architecture and intelligent systems[cite: 2, 6, 7]. Proven ability to architect robust backend logic, engineer predictive <strong>Machine Learning</strong> pipelines, and deploy <strong>Artificial Neural Networks (ANN)</strong> for real-world automation[cite: 35, 36].
+          </p>
         </div>
         
         <div className="mt-10 flex gap-6">
@@ -103,8 +112,24 @@ const CanvasSections = ({ activeSection }) => {
               <span className="bg-eink-ink text-eink-bg px-3 py-1.5 rounded text-sm font-mono font-bold inline-block mb-4">{project.badge}</span>
               <h3 className="text-3xl font-mono font-bold mb-4">{project.title}</h3>
               <p className="text-xl opacity-90">{project.desc}</p>
-              <div className="mt-6 flex flex-wrap gap-4 border-t-2 border-dashed border-eink-ink pt-5 font-mono text-sm font-bold">
-                {project.tags.map(tag => <span key={tag} className="bg-white border border-eink-ink px-2 py-1">{tag}</span>)}
+              
+              {/* === UPDATED: Tags and Hardware Deployment Buttons === */}
+              <div className="mt-6 flex flex-col md:flex-row md:items-center justify-between gap-5 border-t-2 border-dashed border-eink-ink pt-5">
+                
+                <div className="flex flex-wrap gap-3 font-mono text-sm font-bold">
+                  {project.tags.map(tag => <span key={tag} className="bg-white border border-eink-ink px-2 py-1">{tag}</span>)}
+                </div>
+
+                {project.isDisabled ? (
+                  <span className="font-mono text-sm font-bold bg-[#D1D1D1] text-eink-ink/60 border-2 border-eink-ink/40 px-4 py-2 cursor-not-allowed shadow-[inset_2px_2px_0px_rgba(0,0,0,0.1)] select-none">
+                    {project.btnText}
+                  </span>
+                ) : (
+                  <a href={project.btnLink} target="_blank" rel="noreferrer" className="font-mono text-sm font-bold bg-te-orange text-white border-2 border-eink-ink px-4 py-2 shadow-hardware hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-hardware-pressed active:bg-eink-ink transition-all text-center">
+                    {project.btnText}
+                  </a>
+                )}
+
               </div>
             </div>
           ))}
