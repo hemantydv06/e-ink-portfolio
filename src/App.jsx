@@ -62,13 +62,12 @@ const App = () => {
         style={{ backgroundImage: "url('/topo-bg.jpg')" }} 
       />
 
-      {/* --- GRID FIX: Widened the first column to 320px to fit the 3D controller --- */}
-      <div className="grid grid-cols-1 md:grid-cols-[320px_1fr] md:gap-16 max-w-[1150px] w-full px-8 py-14">
+      {/* Grid tightened to exact original 3D width to prevent text overlap */}
+      <div className="grid grid-cols-1 md:grid-cols-[330px_1fr] md:gap-16 max-w-[1150px] w-full px-8 py-14">
         <NokiaSidebar activeSection={activeSection} isDesktop={true} />
         <CanvasSections activeSection={activeSection} />
       </div>
 
-      {/* === MINI BACK-TO-TOP HARDWARE BUTTON === */}
       <div 
         className={`fixed bottom-6 right-6 md:bottom-10 md:right-10 z-50 transition-all duration-500 ${
           showTopBtn ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-10 pointer-events-none'
