@@ -1,7 +1,6 @@
 import React from 'react';
 import clickSound from '../assets/click.wav';
 
-// HARDWARE PRELOAD (Zero Latency)
 const preloadedClick = new Audio(clickSound);
 preloadedClick.preload = 'auto';
 
@@ -11,12 +10,12 @@ const NokiaSidebar = ({ activeSection, isDesktop }) => {
     { id: '#projects-sys', screen: 'DEPLOYMENTS', num: '2', desc: 'WORK' },
     { id: '#skills-sys', screen: 'TECH_STACK', num: '3', desc: 'SKILLS' },
     { id: '#edu-sys', screen: 'ACADEMICS', num: '4', desc: 'LOGS' },
+    { id: '#achieve-sys', screen: 'ACHIEVEMENTS', num: '5', desc: 'EXTRA' },
   ];
 
   const handleNavClick = (e, targetId) => {
     e.preventDefault();
     
-    // INSTANT FIRE SOUND
     const clickClone = preloadedClick.cloneNode();
     clickClone.play().catch(err => console.log("Audio blocked:", err));
 
@@ -27,9 +26,6 @@ const NokiaSidebar = ({ activeSection, isDesktop }) => {
     }
   };
 
-  // --- THE MAGIC LAYOUT FIX ---
-  // isDesktop (PC): 'sticky top-14 h-fit' locks it to the screen while you scroll.
-  // isMobile (Phone): 'relative' acts like a normal picture and scrolls away out of sight.
   const wrapperClass = isDesktop 
     ? "hidden md:block sticky top-14 h-fit w-[280px]" 
     : "block md:hidden relative w-full max-w-[450px] my-8";
@@ -38,19 +34,16 @@ const NokiaSidebar = ({ activeSection, isDesktop }) => {
     <div className={wrapperClass}> 
       <aside className="w-full bg-eink-bg border-4 border-eink-ink rounded-sm p-6 shadow-hardware flex flex-col gap-6 relative overflow-hidden">
         
-        {/* Industrial Screws / Fasteners */}
         <div className="absolute top-2 left-2 w-2 h-2 rounded-full border-2 border-eink-ink"></div>
         <div className="absolute top-2 right-2 w-2 h-2 rounded-full border-2 border-eink-ink"></div>
         <div className="absolute bottom-2 left-2 w-2 h-2 rounded-full border-2 border-eink-ink"></div>
         <div className="absolute bottom-2 right-2 w-2 h-2 rounded-full border-2 border-eink-ink"></div>
 
-        {/* Header Branding */}
         <div className="flex justify-between items-end border-b-2 border-eink-ink pb-2">
           <div className="font-serif font-bold text-sm tracking-tighter uppercase">Teenage<br/>Engineering<br/>Vibe</div>
           <div className="font-mono text-xs font-bold bg-eink-ink text-eink-bg px-1">MODEL: HY-2026</div>
         </div>
 
-        {/* LCD Screen Element */}
         <div className="w-full bg-eink-screen border-4 border-eink-ink p-4 flex flex-col justify-between h-32 relative">
           <div className="flex justify-between items-center text-eink-ink text-xs font-mono font-bold">
             <span>TX/RX</span>
@@ -66,14 +59,14 @@ const NokiaSidebar = ({ activeSection, isDesktop }) => {
           </div>
         </div>
 
-        {/* Hardware Buttons Matrix */}
         <nav className="grid grid-cols-2 gap-4 w-full">
           {navItems.map((item) => (
             <a 
               key={item.num} 
               href={item.id} 
               onClick={(e) => handleNavClick(e, item.id)}
-              className={`hardware-btn ${activeSection === item.screen ? 'active-hardware-btn' : ''}`}
+              /* Make the 5th button span both columns for a mechanical 'spacebar' feel */
+              className={`hardware-btn ${activeSection === item.screen ? 'active-hardware-btn' : ''} ${item.num === '5' ? 'col-span-2' : ''}`}
             >
               <div className="flex justify-between w-full font-mono font-bold text-xs mb-4">
                 <span>{item.num}</span>
@@ -84,7 +77,6 @@ const NokiaSidebar = ({ activeSection, isDesktop }) => {
           ))}
         </nav>
 
-        {/* LED Status Bar */}
         <div className="w-full h-8 border-2 border-eink-ink flex items-center justify-between px-2 bg-white">
           <span className="font-mono text-[0.6rem] font-bold">SEQ_RUNNING</span>
           <div className="flex gap-1">
