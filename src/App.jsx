@@ -57,30 +57,41 @@ const App = () => {
   return (
     <div className="relative flex justify-center min-h-screen bg-eink-bg overflow-hidden">
       
-      {/* === PROCEDURAL DOT MATRIX BACKGROUND === */}
-      <div className="fixed inset-0 w-full h-full bg-dot-matrix opacity-[0.12] pointer-events-none z-0"></div>
+      {/* === INDUSTRIAL SYNTH BACKPLATE DESIGN === */}
+      
+      {/* 1. Grip Tape Panel on Left (Simulates a textured handling grip) */}
+      <div 
+        className="fixed top-0 left-0 w-16 md:w-[280px] h-full pointer-events-none z-0 border-r-2 border-eink-ink/10 shadow-[2px_0_0_rgba(255,255,255,0.8)]" 
+        style={{
+          backgroundImage: 'repeating-linear-gradient(-45deg, transparent, transparent 2px, rgba(34, 34, 34, 0.03) 2px, rgba(34, 34, 34, 0.03) 4px)'
+        }}
+      ></div>
 
-      {/* === MECHANICAL REGISTRATION MARKS (Viewport Corners) === */}
-      {/* Top Left */}
-      <div className="fixed top-6 left-6 w-8 h-8 pointer-events-none z-0 opacity-40">
-        <div className="absolute top-1/2 left-0 w-full h-[2px] bg-eink-ink -translate-y-1/2"></div>
-        <div className="absolute left-1/2 top-0 w-[2px] h-full bg-eink-ink -translate-x-1/2"></div>
+      {/* 2. Molded Plastic Hardware Stamp (Massive faint lettering in background) */}
+      <div className="fixed -bottom-16 -right-8 font-mono font-black text-[15rem] md:text-[22rem] text-eink-ink opacity-[0.02] pointer-events-none z-0 select-none leading-none tracking-tighter shadow-inner">
+        HY<br/>26
       </div>
-      {/* Top Right */}
-      <div className="fixed top-6 right-6 w-8 h-8 pointer-events-none z-0 opacity-40">
-        <div className="absolute top-1/2 left-0 w-full h-[2px] bg-eink-ink -translate-y-1/2"></div>
-        <div className="absolute left-1/2 top-0 w-[2px] h-full bg-eink-ink -translate-x-1/2"></div>
+
+      {/* 3. Faux Laser-Etched Decal & Barcode (Top Right) */}
+      <div className="fixed top-24 right-12 pointer-events-none z-0 flex-col items-end opacity-[0.15] hidden xl:flex">
+        <div className="flex gap-1 h-14 mb-2">
+           <div className="w-1.5 bg-eink-ink"></div>
+           <div className="w-3 bg-eink-ink"></div>
+           <div className="w-1 bg-eink-ink"></div>
+           <div className="w-2 bg-eink-ink"></div>
+           <div className="w-4 bg-eink-ink"></div>
+           <div className="w-1 bg-eink-ink"></div>
+           <div className="w-2.5 bg-eink-ink"></div>
+           <div className="w-1 bg-eink-ink"></div>
+           <div className="w-2 bg-eink-ink"></div>
+           <div className="w-3 bg-eink-ink"></div>
+           <div className="w-0.5 bg-eink-ink"></div>
+        </div>
+        <span className="font-mono text-xs font-bold text-eink-ink tracking-widest">SN: 2K24CSUN01285</span>
+        <span className="font-mono text-[0.55rem] font-bold text-eink-ink tracking-widest uppercase mt-0.5">ASSEMBLED IN GURUGRAM, IN</span>
       </div>
-      {/* Bottom Left */}
-      <div className="fixed bottom-6 left-6 w-8 h-8 pointer-events-none z-0 opacity-40 md:block hidden">
-        <div className="absolute top-1/2 left-0 w-full h-[2px] bg-eink-ink -translate-y-1/2"></div>
-        <div className="absolute left-1/2 top-0 w-[2px] h-full bg-eink-ink -translate-x-1/2"></div>
-      </div>
-      {/* Bottom Right */}
-      <div className="fixed bottom-6 right-6 w-8 h-8 pointer-events-none z-0 opacity-40 md:block hidden">
-        <div className="absolute top-1/2 left-0 w-full h-[2px] bg-eink-ink -translate-y-1/2"></div>
-        <div className="absolute left-1/2 top-0 w-[2px] h-full bg-eink-ink -translate-x-1/2"></div>
-      </div>
+      
+      {/* ========================================= */}
 
       {/* Main Grid */}
       <div className="grid grid-cols-1 md:grid-cols-[330px_1fr] md:gap-16 max-w-[1150px] w-full px-8 py-14 z-10">
