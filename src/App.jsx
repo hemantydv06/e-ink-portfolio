@@ -55,11 +55,9 @@ const App = () => {
   };
 
   return (
-    <div className="relative flex justify-center min-h-screen bg-eink-bg overflow-hidden">
+    <div className="relative flex justify-center min-h-screen bg-eink-bg overflow-x-hidden">
       
-      {/* === INDUSTRIAL SYNTH BACKPLATE DESIGN (HIGH INTENSITY) === */}
-      
-      {/* 1. Grip Tape Panel on Left (Cranked opacity to 10% and darkened the border) */}
+      {/* 1. Grip Tape Panel */}
       <div 
         className="fixed top-0 left-0 w-16 md:w-[280px] h-full pointer-events-none z-0 border-r-4 border-eink-ink/20 shadow-[2px_0_0_rgba(255,255,255,1)]" 
         style={{
@@ -67,12 +65,12 @@ const App = () => {
         }}
       ></div>
 
-      {/* 2. Molded Plastic Hardware Stamp (Cranked opacity from 0.02 up to 0.08) */}
+      {/* 2. Molded Plastic Hardware Stamp */}
       <div className="fixed -bottom-16 -right-8 font-mono font-black text-[15rem] md:text-[22rem] text-eink-ink opacity-[0.08] pointer-events-none z-0 select-none leading-none tracking-tighter shadow-inner">
         HY<br/>26
       </div>
 
-      {/* 3. Faux Laser-Etched Decal & Barcode (Cranked opacity from 15% to 50%) */}
+      {/* 3. Faux Laser-Etched Decal & Barcode */}
       <div className="fixed top-24 right-12 pointer-events-none z-0 flex-col items-end opacity-50 hidden xl:flex">
         <div className="flex gap-1 h-14 mb-2">
            <div className="w-1.5 bg-eink-ink"></div>
@@ -91,8 +89,6 @@ const App = () => {
         <span className="font-mono text-[0.55rem] font-bold text-eink-ink tracking-widest uppercase mt-0.5">ASSEMBLED IN GURUGRAM, IN</span>
       </div>
       
-      {/* ========================================= */}
-
       {/* Main Grid */}
       <div className="grid grid-cols-1 md:grid-cols-[330px_1fr] md:gap-16 max-w-[1150px] w-full px-8 py-14 z-10">
         <NokiaSidebar activeSection={activeSection} isDesktop={true} />

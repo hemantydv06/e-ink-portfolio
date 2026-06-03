@@ -30,18 +30,13 @@ const NokiaSidebar = ({ activeSection, isDesktop }) => {
     clickClone.play().catch(() => {});
   };
 
-  // === UPDATED SYNC ENGINE ===
   const handleNavClick = (e, targetId) => {
     e.preventDefault();
-    
-    // 1. Fire the sound instantly on frame zero
     triggerClickSound();
 
     const targetElement = document.querySelector(targetId);
     if (targetElement) {
       const yOffset = targetElement.getBoundingClientRect().top + window.scrollY - 40;
-      
-      // 2. Delay the scroll by exactly 50ms so it aligns with the peak of the audio wave
       setTimeout(() => {
         window.scrollTo({ top: yOffset, behavior: 'smooth' });
       }, 50);
@@ -102,7 +97,8 @@ const NokiaSidebar = ({ activeSection, isDesktop }) => {
 
         <div className="flex justify-between items-end border-b-2 border-eink-ink pb-2">
           <div className="font-serif font-bold text-sm tracking-tighter uppercase">Teenage<br/>Engineering<br/>Vibe</div>
-          <div className="font-mono text-xs font-bold bg-eink-ink text-eink-bg px-1">MODEL: HY-2026</div>
+          {/* --- UPDATED: HY-2026 is now te-orange --- */}
+          <div className="font-mono text-xs font-bold bg-eink-ink text-te-orange px-1">MODEL: HY-2026</div>
         </div>
 
         <div className="w-full bg-eink-screen border-4 border-eink-ink p-4 flex flex-col justify-between h-32 relative">
