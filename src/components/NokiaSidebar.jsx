@@ -42,9 +42,7 @@ const NokiaSidebar = ({ activeSection, isDesktop }) => {
       setToast('RADIO: OFF');
       setTimeout(() => setToast(null), 2000);
     } else {
-      // Show connecting status instantly while waiting for the live stream to buffer
       setToast('CONNECTING...');
-      
       radioRef.current.play().then(() => {
         setIsRadioPlaying(true);
         setToast('RADIO: ON');
@@ -57,7 +55,6 @@ const NokiaSidebar = ({ activeSection, isDesktop }) => {
     }
   };
 
-  // --- LAYOUT FIX: Tightened width to 320px and removed extra margins ---
   const wrapperClass = isDesktop 
     ? "hidden md:block sticky top-16 h-fit w-[320px] relative" 
     : "block md:hidden relative w-full max-w-[450px] my-10";
@@ -77,7 +74,7 @@ const NokiaSidebar = ({ activeSection, isDesktop }) => {
       <div className="flex w-full h-full rounded-xl shadow-[12px_12px_0px_#222222] relative z-10 bg-eink-ink">
 
         {/* LEFT SIDE CASING */}
-        <div className="w-12 bg-[#B0B0B0] rounded-l-xl border-4 border-r-2 border-eink-ink flex flex-col items-center pt-16 pb-6 gap-10 shadow-[inset_4px_4px_0px_rgba(255,255,255,0.4)] z-20">
+        <div className="w-12 shrink-0 bg-[#B0B0B0] rounded-l-xl border-4 border-r-2 border-eink-ink flex flex-col items-center pt-16 pb-6 gap-10 shadow-[inset_4px_4px_0px_rgba(255,255,255,0.4)] z-20">
 
            <button 
              onClick={triggerClickSound}
@@ -98,51 +95,56 @@ const NokiaSidebar = ({ activeSection, isDesktop }) => {
         </div>
 
         {/* MAIN FRONT FACE */}
-        <aside className="flex-1 bg-eink-bg border-4 border-l-2 border-eink-ink rounded-r-xl p-5 shadow-[inset_-4px_-4px_0px_rgba(0,0,0,0.1)] flex flex-col gap-6 relative z-10 bg-noise">
+        {/* Adjusted padding (p-4) and gap (gap-5) to give the buttons strictly defined breathing room */}
+        <aside className="flex-1 min-w-0 bg-eink-bg border-4 border-l-2 border-eink-ink rounded-r-xl p-4 shadow-[inset_-4px_-4px_0px_rgba(0,0,0,0.1)] flex flex-col gap-5 relative z-10 bg-noise">
           
           <div className="absolute top-2 right-2 w-2 h-2 rounded-full border-2 border-eink-ink"></div>
           <div className="absolute bottom-2 right-2 w-2 h-2 rounded-full border-2 border-eink-ink"></div>
 
           <div className="flex justify-between items-end border-b-2 border-eink-ink pb-2">
-            <div className="font-serif font-bold text-xs tracking-tighter uppercase leading-tight">Teenage<br/>Engineering<br/>Vibe</div>
-            <div className="font-mono text-[0.6rem] font-bold bg-eink-ink text-eink-bg px-1">MODEL: HY-2026</div>
+            <div className="font-serif font-bold text-xs tracking-tighter uppercase leading-tight truncate mr-2">Teenage<br/>Engineering<br/>Vibe</div>
+            <div className="font-mono text-[0.6rem] font-bold bg-eink-ink text-eink-bg px-1 shrink-0">MODEL: HY-2026</div>
           </div>
 
-          <div className="w-full bg-eink-screen border-4 border-eink-ink p-3 flex flex-col justify-between h-32 relative shadow-[inset_2px_2px_0px_rgba(0,0,0,0.1)]">
+          <div className="w-full bg-eink-screen border-4 border-eink-ink p-3 flex flex-col justify-between h-28 relative shadow-[inset_2px_2px_0px_rgba(0,0,0,0.1)] overflow-hidden">
             <div className="flex justify-between items-center text-eink-ink text-[0.65rem] font-mono font-bold">
               <span>TX/RX</span>
-              <span className="flex gap-1">
+              <span className="flex gap-1 shrink-0">
                 <div className={`w-1.5 bg-eink-ink ${isRadioPlaying ? 'animate-wind-1 h-3' : 'h-3'}`}></div>
                 <div className={`w-1.5 bg-eink-ink ${isRadioPlaying ? 'animate-wind-2 h-3' : 'h-3'}`}></div>
                 <div className={`w-1.5 bg-eink-ink ${isRadioPlaying ? 'animate-wind-3 h-3' : 'h-3'}`}></div>
                 <div className="w-1.5 h-3 border border-eink-ink"></div>
               </span>
             </div>
-            <div className="font-mono font-bold text-xl uppercase tracking-widest animate-blink">
+            {/* Reduced text size slightly (text-lg) to prevent long words stretching the LCD */}
+            <div className="font-mono font-bold text-lg uppercase tracking-wider animate-blink truncate">
               {activeSection}
             </div>
           </div>
 
-          <nav className="grid grid-cols-2 gap-3 w-full">
+          {/* Reduced gap (gap-2) to pull buttons tighter together */}
+          <nav className="grid grid-cols-2 gap-2 w-full">
             {navItems.map((item) => (
               <a 
                 key={item.num} 
                 href={item.id} 
                 onClick={(e) => handleNavClick(e, item.id)}
-                className={`hardware-btn !p-2 ${activeSection === item.screen ? 'active-hardware-btn' : ''} ${item.num === '5' ? 'col-span-2' : ''}`}
+                /* Shrunk the button padding (!p-1.5) to keep it tightly boxed */
+                className={`hardware-btn !p-1.5 overflow-hidden ${activeSection === item.screen ? 'active-hardware-btn' : ''} ${item.num === '5' ? 'col-span-2' : ''}`}
               >
-                <div className="flex justify-between w-full font-mono font-bold text-[0.65rem] mb-2">
+                <div className="flex justify-between w-full font-mono font-bold text-[0.6rem] mb-1">
                   <span>{item.num}</span>
-                  <div className={`w-2 h-2 rounded-full ${activeSection === item.screen ? 'bg-te-orange' : 'border border-eink-ink'}`}></div>
+                  <div className={`w-1.5 h-1.5 rounded-full ${activeSection === item.screen ? 'bg-te-orange' : 'border border-eink-ink'}`}></div>
                 </div>
-                <span className="font-serif font-bold text-xs uppercase tracking-tighter text-left w-full">{item.desc}</span>
+                {/* Scaled down text size and forced truncation so it never breaks the grid */}
+                <span className="font-serif font-bold text-[0.65rem] uppercase tracking-tighter text-left w-full truncate">{item.desc}</span>
               </a>
             ))}
           </nav>
 
-          <div className="w-full h-7 border-2 border-eink-ink flex items-center justify-between px-2 bg-white">
+          <div className="w-full h-7 border-2 border-eink-ink flex items-center justify-between px-2 bg-white mt-auto">
             <span className="font-mono text-[0.55rem] font-bold">SEQ_RUNNING</span>
-            <div className="flex gap-1">
+            <div className="flex gap-1 shrink-0">
                <div className={`w-2 h-2 rounded-full animate-blink ${isRadioPlaying ? 'bg-red-500' : 'bg-te-orange'}`}></div>
             </div>
           </div>
