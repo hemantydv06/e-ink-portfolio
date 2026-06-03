@@ -55,23 +55,20 @@ const App = () => {
   };
 
   return (
-    <div className="relative flex justify-center min-h-screen bg-eink-bg">
+    // Changed to flex-col so we can push the full-width footer to the bottom naturally
+    <div className="relative flex flex-col min-h-screen bg-eink-bg">
       
-      {/* 1. Grip Tape Panel */}
+      {/* === BACKGROUND LAYERS === */}
       <div 
         className="fixed top-0 left-0 w-16 md:w-[280px] h-full pointer-events-none z-0 border-r-4 border-eink-ink/20 shadow-[2px_0_0_rgba(255,255,255,1)]" 
         style={{
           backgroundImage: 'repeating-linear-gradient(-45deg, transparent, transparent 2px, rgba(34, 34, 34, 0.1) 2px, rgba(34, 34, 34, 0.1) 4px)'
         }}
       ></div>
-
-      {/* 2. Molded Plastic Hardware Stamp (NOW ORANGE) */}
       <div className="fixed -bottom-16 -right-8 font-mono font-black text-[15rem] md:text-[22rem] text-te-orange opacity-[0.15] pointer-events-none z-0 select-none leading-none tracking-tighter shadow-inner">
         HY<br/>26
       </div>
-
-      {/* 3. Faux Laser-Etched Decal & Barcode */}
-      <div className="fixed top-16 right-12 pointer-events-none z-0 flex-col items-end opacity-50 hidden xl:flex">
+      <div className="fixed top-24 right-12 pointer-events-none z-0 flex-col items-end opacity-50 hidden xl:flex">
         <div className="flex gap-1 h-14 mb-2">
            <div className="w-1.5 bg-eink-ink"></div>
            <div className="w-3 bg-eink-ink"></div>
@@ -85,15 +82,69 @@ const App = () => {
            <div className="w-3 bg-eink-ink"></div>
            <div className="w-0.5 bg-eink-ink"></div>
         </div>
-        <span className="font-mono text-xs font-bold text-eink-ink tracking-widest">SN: 2Q2RCURM42585</span>
-        <span className="font-mono text-[0.55rem] font-bold text-eink-ink tracking-widest uppercase mt-0.5">HEMANT YADAV</span>
+        <span className="font-mono text-xs font-bold text-eink-ink tracking-widest">SN: 2K24CSUN01285</span>
+        <span className="font-mono text-[0.55rem] font-bold text-eink-ink tracking-widest uppercase mt-0.5">ASSEMBLED IN GURUGRAM, IN</span>
       </div>
-      
-      {/* Main Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-[330px_1fr] md:gap-16 max-w-[1150px] w-full px-8 py-14 z-10">
-        <NokiaSidebar activeSection={activeSection} isDesktop={true} />
-        <CanvasSections activeSection={activeSection} />
+      {/* ======================= */}
+
+      {/* === MAIN CONTENT WRAPPER === */}
+      <div className="flex-1 flex justify-center w-full relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-[330px_1fr] md:gap-16 max-w-[1150px] w-full px-8 pt-14">
+          <NokiaSidebar activeSection={activeSection} isDesktop={true} />
+          <CanvasSections activeSection={activeSection} />
+        </div>
       </div>
+
+      {/* === FULL-WIDTH GREEN LCD FOOTER === */}
+      <footer className="w-full bg-[#a6c296] border-t-4 border-eink-ink py-10 px-8 relative z-20 text-eink-ink shadow-[inset_0_4px_15px_rgba(0,0,0,0.1)] mt-10">
+        
+        {/* Faint LCD Pixel Noise Overlay */}
+        <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-noise"></div>
+
+        <div className="max-w-[1150px] mx-auto flex flex-col md:flex-row justify-between items-start md:items-end gap-10 relative z-10">
+          
+          <div className="flex flex-col gap-2">
+            <div className="flex items-center gap-2 mb-1">
+               {/* Dark LCD pixel blinks on the green screen */}
+               <div className="w-2 h-2 bg-eink-ink rounded-full animate-blink"></div>
+               <span className="font-mono text-xs font-bold tracking-widest opacity-80">SYSTEMS_ONLINE</span>
+            </div>
+            <h2 className="font-mono text-4xl md:text-5xl font-black uppercase tracking-tighter">Hemant Yadav</h2>
+            <p className="font-mono text-sm font-bold opacity-80">ENGINEER // GURUGRAM, HARYANA</p>
+
+            {/* Contact Array */}
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 mt-5 border-t-2 border-dashed border-eink-ink/40 pt-5">
+              <a href="mailto:yadavhemant1002@gmail.com" className="font-mono text-sm font-bold flex items-center gap-2 hover:translate-x-1 transition-transform w-fit">
+                 <i className="fa-solid fa-envelope"></i> yadavhemant1002@gmail.com
+              </a>
+              <a href="tel:+919953568400" className="font-mono text-sm font-bold flex items-center gap-2 hover:translate-x-1 transition-transform w-fit">
+                 <i className="fa-solid fa-phone"></i> +91 9953568400
+              </a>
+            </div>
+          </div>
+
+          {/* Technical Stamp Block */}
+          <div className="flex flex-col items-start md:items-end justify-between">
+            <div className="flex gap-1 h-12 mb-4 p-2 border-2 border-eink-ink bg-[#92ae83] shadow-inner w-fit">
+               <div className="w-1.5 bg-eink-ink"></div>
+               <div className="w-3 bg-eink-ink"></div>
+               <div className="w-1 bg-eink-ink"></div>
+               <div className="w-2 bg-eink-ink"></div>
+               <div className="w-4 bg-eink-ink"></div>
+               <div className="w-1 bg-eink-ink"></div>
+               <div className="w-2 bg-eink-ink"></div>
+               <div className="w-1.5 bg-eink-ink"></div>
+               <div className="w-0.5 bg-eink-ink"></div>
+            </div>
+            <div className="text-left md:text-right">
+               <div className="font-mono text-[0.7rem] font-bold tracking-widest opacity-80">ID: 2K24CSUN01285</div>
+               <div className="font-mono text-[0.7rem] font-bold tracking-widest mt-1 opacity-80">MFG YEAR: 2026</div>
+            </div>
+          </div>
+
+        </div>
+      </footer>
+      {/* ================================== */}
 
       {/* Rocket Launch Button */}
       <div 
