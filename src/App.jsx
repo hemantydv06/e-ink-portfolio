@@ -55,28 +55,47 @@ const App = () => {
   };
 
   return (
-    <div className="relative flex justify-center min-h-screen">
+    <div className="relative flex justify-center min-h-screen bg-eink-bg overflow-hidden">
       
-      <div 
-        className="fixed inset-0 w-full h-full bg-cover bg-center bg-no-repeat opacity-15 grayscale contrast-150 -z-10 pointer-events-none"
-        style={{ backgroundImage: "url('/topo-bg.jpg')" }} 
-      />
+      {/* === PROCEDURAL DOT MATRIX BACKGROUND === */}
+      <div className="fixed inset-0 w-full h-full bg-dot-matrix opacity-[0.12] pointer-events-none z-0"></div>
 
-      {/* Grid tightened to exact original 3D width to prevent text overlap */}
-      <div className="grid grid-cols-1 md:grid-cols-[330px_1fr] md:gap-16 max-w-[1150px] w-full px-8 py-14">
+      {/* === MECHANICAL REGISTRATION MARKS (Viewport Corners) === */}
+      {/* Top Left */}
+      <div className="fixed top-6 left-6 w-8 h-8 pointer-events-none z-0 opacity-40">
+        <div className="absolute top-1/2 left-0 w-full h-[2px] bg-eink-ink -translate-y-1/2"></div>
+        <div className="absolute left-1/2 top-0 w-[2px] h-full bg-eink-ink -translate-x-1/2"></div>
+      </div>
+      {/* Top Right */}
+      <div className="fixed top-6 right-6 w-8 h-8 pointer-events-none z-0 opacity-40">
+        <div className="absolute top-1/2 left-0 w-full h-[2px] bg-eink-ink -translate-y-1/2"></div>
+        <div className="absolute left-1/2 top-0 w-[2px] h-full bg-eink-ink -translate-x-1/2"></div>
+      </div>
+      {/* Bottom Left */}
+      <div className="fixed bottom-6 left-6 w-8 h-8 pointer-events-none z-0 opacity-40 md:block hidden">
+        <div className="absolute top-1/2 left-0 w-full h-[2px] bg-eink-ink -translate-y-1/2"></div>
+        <div className="absolute left-1/2 top-0 w-[2px] h-full bg-eink-ink -translate-x-1/2"></div>
+      </div>
+      {/* Bottom Right */}
+      <div className="fixed bottom-6 right-6 w-8 h-8 pointer-events-none z-0 opacity-40 md:block hidden">
+        <div className="absolute top-1/2 left-0 w-full h-[2px] bg-eink-ink -translate-y-1/2"></div>
+        <div className="absolute left-1/2 top-0 w-[2px] h-full bg-eink-ink -translate-x-1/2"></div>
+      </div>
+
+      {/* Main Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-[330px_1fr] md:gap-16 max-w-[1150px] w-full px-8 py-14 z-10">
         <NokiaSidebar activeSection={activeSection} isDesktop={true} />
         <CanvasSections activeSection={activeSection} />
       </div>
 
+      {/* Rocket Launch Button */}
       <div 
         className={`fixed bottom-6 right-6 md:bottom-10 md:right-10 z-50 transition-all duration-500 ${
           showTopBtn ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-10 pointer-events-none'
         }`}
       >
         <div className="relative flex items-center justify-center">
-          
           <div className="absolute -inset-1.5 bg-te-orange opacity-40 blur-md rounded-lg animate-pulse pointer-events-none z-0"></div>
-
           <button 
             onClick={handleScrollToTop} 
             className={`hardware-btn relative z-10 w-14 h-14 !p-0 flex flex-col items-center justify-center gap-1.5 ${isLaunching ? 'animate-rocket' : ''}`}
