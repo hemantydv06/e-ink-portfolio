@@ -83,16 +83,13 @@ const CanvasSections = ({ activeSection }) => {
         
         <div className="sketch-frame text-xl leading-relaxed">
           <p>Certified <strong>Java Web Developer</strong> and Computer Science Engineering student with a high-efficiency mindset. Proven ability to build full-stack applications and architect scalable backend logic.</p>
-          <p className="mt-4 border-t-2 border-dashed border-eink-ink pt-4 font-mono text-base font-bold text-te-orange">
-            &gt; SEEKING 4-6 WEEK INTERNSHIP CYCLE // JUNE-JULY 2026
-          </p>
         </div>
         
         <div className="mt-10 flex gap-6">
           <a href="https://github.com/hemantydv06" target="_blank" rel="noreferrer" className="border-2 border-eink-ink px-6 py-3 rounded-full bg-white shadow-sketch hover:-translate-y-0.5 hover:shadow-sketch-hover transition-all font-mono font-bold text-base text-eink-ink">
             <i className="fab fa-github mr-2"></i> _github
           </a>
-          <a href="https://linkedin.com/in/hemantydvvv" target="_blank" rel="noreferrer" className="border-2 border-eink-ink px-6 py-3 rounded-full bg-white shadow-sketch hover:-translate-y-0.5 hover:shadow-sketch-hover transition-all font-mono font-bold text-base text-eink-ink">
+          <a href="https://www.linkedin.com/in/hemantydvvv" target="_blank" rel="noreferrer" className="border-2 border-eink-ink px-6 py-3 rounded-full bg-white shadow-sketch hover:-translate-y-0.5 hover:shadow-sketch-hover transition-all font-mono font-bold text-base text-eink-ink">
             <i className="fab fa-linkedin-in mr-2"></i> _linkedin
           </a>
         </div>
@@ -156,21 +153,17 @@ const CanvasSections = ({ activeSection }) => {
         </div>
       </section>
 
-      {/* === NEW ACHIEVEMENTS SECTION === */}
       <section id="achieve-sys" className="scroll-section relative" data-screen="ACHIEVEMENTS">
         <h2 className="border-b-4 border-eink-ink inline-block mb-10 font-mono text-3xl uppercase">Extracurricular</h2>
         <div className="flex flex-col gap-8">
-          
           <div className="sketch-frame !p-6">
             <h3 className="font-mono text-2xl font-bold mb-2">Hackathon Competitor</h3>
             <p className="text-lg">Competed in two 72-hour National Level Hackathons at K.R. Mangalam University. Collaborated in high-pressure environments to build functional prototypes.</p>
           </div>
-
           <div className="sketch-frame !p-6">
             <h3 className="font-mono text-2xl font-bold mb-2">IEEE Club Member</h3>
             <p className="text-lg">Actively engaged in technical networking and staying updated with emerging engineering standards and protocols.</p>
           </div>
-
         </div>
       </section>
 
