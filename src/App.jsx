@@ -71,7 +71,7 @@ const App = () => {
       </div>
 
       {/* 3. Faux Laser-Etched Decal & Barcode */}
-      <div className="fixed top-24 right-12 pointer-events-none z-0 flex-col items-end opacity-50 hidden xl:flex">
+      <div className="fixed top-16 right-12 pointer-events-none z-0 flex-col items-end opacity-50 hidden xl:flex">
         <div className="flex gap-1 h-14 mb-2">
            <div className="w-1.5 bg-eink-ink"></div>
            <div className="w-3 bg-eink-ink"></div>
@@ -85,8 +85,8 @@ const App = () => {
            <div className="w-3 bg-eink-ink"></div>
            <div className="w-0.5 bg-eink-ink"></div>
         </div>
-        <span className="font-mono text-xs font-bold text-eink-ink tracking-widest">SN: 2K24CSUN01285</span>
-        <span className="font-mono text-[0.55rem] font-bold text-eink-ink tracking-widest uppercase mt-0.5">ASSEMBLED IN GURUGRAM, IN</span>
+        <span className="font-mono text-xs font-bold text-eink-ink tracking-widest">SN: 2Q2RCURM42585</span>
+        <span className="font-mono text-[0.55rem] font-bold text-eink-ink tracking-widest uppercase mt-0.5">HEMANT YADAV</span>
       </div>
       
       {/* Main Grid */}
