@@ -83,7 +83,7 @@ const App = () => {
            <div className="w-0.5 bg-eink-ink"></div>
         </div>
         <span className="font-mono text-xs font-bold text-eink-ink tracking-widest">SN: 67647646545465</span>
-        <span className="font-mono text-[0.55rem] font-bold text-eink-ink tracking-widest uppercase mt-0.5">ASSEMBLED IN GURUGRAM, IN</span>
+        <span className="font-mono text-[0.55rem] font-bold text-eink-ink tracking-widest uppercase mt-0.5">ASSEMBLED</span>
       </div>
       {/* ======================= */}
 
