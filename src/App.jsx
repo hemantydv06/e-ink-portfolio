@@ -82,7 +82,7 @@ const App = () => {
            <div className="w-3 bg-eink-ink"></div>
            <div className="w-0.5 bg-eink-ink"></div>
         </div>
-        <span className="font-mono text-xs font-bold text-eink-ink tracking-widest">SN: 2K24CSUN01285</span>
+        <span className="font-mono text-xs font-bold text-eink-ink tracking-widest">SN: 67647646545465</span>
         <span className="font-mono text-[0.55rem] font-bold text-eink-ink tracking-widest uppercase mt-0.5">ASSEMBLED IN GURUGRAM, IN</span>
       </div>
       {/* ======================= */}
@@ -110,7 +110,7 @@ const App = () => {
                <span className="font-mono text-xs font-bold tracking-widest opacity-80">SYSTEMS_ONLINE</span>
             </div>
             <h2 className="font-mono text-4xl md:text-5xl font-black uppercase tracking-tighter">Hemant Yadav</h2>
-            <p className="font-mono text-sm font-bold opacity-80">ENGINEER // GURUGRAM, HARYANA</p>
+            <p className="font-mono text-sm font-bold opacity-80">ENGINEER // INDIA</p>
 
             {/* Contact Array */}
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 mt-5 border-t-2 border-dashed border-eink-ink/40 pt-5">
@@ -118,7 +118,7 @@ const App = () => {
                  <i className="fa-solid fa-envelope"></i> yadavhemant1002@gmail.com
               </a>
               <a href="tel:+919953568400" className="font-mono text-sm font-bold flex items-center gap-2 hover:translate-x-1 transition-transform w-fit">
-                 <i className="fa-solid fa-phone"></i> +91 9953568400
+                 <i className="fa-solid fa-phone"></i> +91 99535XXXXXX
               </a>
             </div>
           </div>
@@ -137,7 +137,7 @@ const App = () => {
                <div className="w-0.5 bg-eink-ink"></div>
             </div>
             <div className="text-left md:text-right">
-               <div className="font-mono text-[0.7rem] font-bold tracking-widest opacity-80">ID: 2K24CSUN01285</div>
+               <div className="font-mono text-[0.7rem] font-bold tracking-widest opacity-80">ID: 2234897432893</div>
                <div className="font-mono text-[0.7rem] font-bold tracking-widest mt-1 opacity-80">MFG YEAR: 2026</div>
             </div>
           </div>
